@@ -86,8 +86,8 @@ export const Home = {
         m(SheetBtns),
         m(Links),
 
-        !resumeState.hideSheet && m(BottomSheet, { state: resumeState, render: (state) => m(Resume, { mdl, state }) }),
-        !portfolioState.hideSheet && m(BottomSheet, { state: portfolioState, render: () => m(Portfolio, { mdl }) },)
+        m(BottomSheet, { state: resumeState, render: (state) => m(Resume, { mdl, state }) }),
+        m(BottomSheet, { state: portfolioState, render: () => m(Portfolio, { mdl }) },)
       ),
     )
 }
