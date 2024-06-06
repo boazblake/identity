@@ -1,0 +1,190 @@
+/* Copyright (c) 2022 Ivan Teplov */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --background: #fff;
+  --foreground: #000;
+  --divider: #dcdcdc;
+  --overlay: #888;
+  --box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #000;
+    --foreground: #fff;
+    --divider: #333;
+    --box-shadow: 0 3px 10px rgb(255 255 255 / 1);
+  }
+}
+
+#bottomsheet >
+a,
+button,
+input,
+textarea,
+[contenteditable="true"] {
+  box-sizing: border-box;
+  padding: 1rem;
+
+  border-radius: 1rem;
+  border: 0.0625rem solid var(--divider);
+
+  font-family: inherit;
+  font-size: 1rem;
+
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.body {
+  background: var(--background);
+  color: var(--foreground);
+
+  overflow: scroll;
+  line-height: 1.5;
+
+  -webkit-tap-highlight-color: transparent;
+}
+
+
+
+textarea {
+  resize: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+.grabbing {
+  cursor: grabbing;
+}
+
+.grabber {
+  cursor: grab;
+}
+
+.sheet {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: -3dvh;
+  z-index: 2;
+  visibility: visible;
+  transition: opacity 0.5s, visibility 0.5s;
+}
+
+.sheet[aria-hidden="true"] {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.sheet .overlay {
+  position: absolute;
+  top: -100;
+  left: -100;
+  right: 100;
+  bottom: 0;
+  z-index: -1;
+  background: var(--overlay);
+  opacity: 0.5;
+}
+
+.sheet #contents {
+  display: flex;
+  flex-direction: column;
+
+  overflow-y:auto;
+  border-radius: 1rem 1rem 0 0;
+
+  background: var(--background);
+
+  --default-transitions: transform 0.5s, width, box-shadow, height, border-radius 0.5s;
+
+  transition: var(--default-transitions);
+  transform: translateY(0);
+
+  max-width: 90%;
+  max-height: 100vh;
+  height: 30vh;
+
+  box-sizing: border-box;
+  box-shadow: var(--box-shadow);
+}
+
+.sheet #contents:not(.not-selectable) {
+  transition: var(--default-transitions) 0.5s;
+}
+
+.sheet #contents.fullscreen {
+  border-radius: 0;
+  max-width: none;
+  transition: var(--default-transitions);
+  transition: width, height, box-shadow 0.5s ease-in;
+  box-shadow: none;
+}
+
+.sheet[aria-hidden="true"] #contents {
+  transform: translateY(100%);
+}
+
+.sheet .controls {
+  display: flex;
+  height: 50px;
+}
+
+.sheet .controls:hover .draggable-thumb {
+  width: 4rem;
+  transition: width 0.4s  ease-in;
+}
+
+
+.sheet .draggable-area {
+  width: 3rem;
+  margin: auto;
+  padding: 1rem;
+}
+
+.sheet .draggable-thumb {
+  width: inherit;
+  height: 0.5rem;
+  background: var(--divider);
+  border-radius: 0.125rem;
+  transition: width 0.4s  ease-in;
+}
+
+.sheet a.close-sheet {
+  border: none;
+  font-size: 2rem;
+  transform: translate(-25px, 5px);
+}
+
+.sheet .body {
+  flex-grow: 1;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow-y: auto;
+  gap: 1rem;
+
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+form {
+  gap: 1rem;
+}

@@ -1,0 +1,197 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+@import url("./w3-pro.css");
+@import url("./utils.css");
+
+:root {
+  --blue: #042532;
+  --indigo: #8e44ad;
+  --purple: #6f42c1;
+  --pink: #e83e8c;
+  --red: #dc3545;
+  --orange: #c58a52;
+  --yellow: #bfa680;
+  --green: #28a745;
+  --teal: #20c997;
+  --cyan: #17a2b8;
+  --white: #fff;
+  --gray: #747474;
+  --gray-dark: #232321;
+  --primary: #007bff;
+  --secondary: #6c757d;
+  --success: #28a745;
+  --info: #17a2b8;
+  --warning: #ffc107;
+  --danger: #dc3545;
+  --light: #f8f9fa;
+  --dark: #343a40;
+  --breakpoint-xs: 0;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: Montserrat;
+  touch-action: manipulation;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.overflow {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: -15px;
+}
+
+.resume-title {
+  line-height: 75px;
+
+}
+
+#app {
+  height: 100dvh;
+  padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+}
+
+#header {
+  font-size: 25px;
+  padding: 8px;
+  min-height: 100px;
+  transition-duration: 0.6s;
+}
+
+
+.glass {
+    margin: 0 1rem 0 0;
+    background-color: #ffffff7d;
+    border-radius: 12px;
+    padding: 1rem;
+    box-sizing: border-box;
+    width: 100%;
+    color: rgba(0,0,0,0.8);
+    backdrop-filter: blur(33px);
+    background-blend-mode: overlay;
+    display: flex;
+    align-items: center;
+}
+
+.svg-border {
+  clip-path: url(#sine-wave);
+}
+
+.typewriter {
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: 0.1em; /* Adjust as needed */
+}
+
+.type-writer {
+  border-right: 0.15em solid var(--orange); /* The typwriter cursor */
+  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+/* The typing effect */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: var(--orange);
+  }
+}
+
+/* #logo-header {
+  height: 80px;
+  max-width: 300px;
+} */
+
+.indent {
+  text-indent: 12px;
+}
+
+.nav-icon {
+  width: 40px;
+}
+
+.nav-icon:after,
+.nav-icon:before,
+.nav-icon div {
+  background-color: var(--blue);
+  border-radius: 3px;
+  content: "";
+  display: block;
+  height: 2px;
+  margin: 7px 0;
+  transition: all 0.2s ease-in-out;
+}
+
+.nav-icon.is-active:before {
+  background-color: var(--white);
+  transform: translateY(12px) rotate(135deg);
+}
+
+.nav-icon.is-active:after {
+  background-color: var(--white);
+  transform: translateY(-12px) rotate(-135deg);
+}
+
+.nav-icon.is-active div {
+  transform: scale(0);
+}
+
+
+#resume {
+  /* height: 90%;
+  overflow-y:scroll; */
+}
+
+#me {
+  transition: transform 1.2s cubic-bezier(0.5, 0, 0.25, 1), opacity 1s cubic-bezier(0.5, 0, 0.25, 1);
+  transform: scale(0);
+  opacity: 0;
+  width:0;
+  height:0;
+  /* object-fit: cover; Optionally uncomment this if switching */
+}
+
+#me.show {
+  transform: scale(1);
+  opacity: 1;
+  border-radius: 3em;
+  width: 300px;
+  height: 200px;
+}
