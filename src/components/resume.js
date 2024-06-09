@@ -123,7 +123,11 @@ const Resume = {
       m('a.button.w3-right.sticky', { onclick: triggerDownload(), tabIndex: "1", target: "_blank", rel: "noopener noreferrer", href: '/files/The_Resume_Of_Boaz_Blake.pdf', download: 'The_Resume_Of_Boaz_Blake.pdf', style: { zIndex: 1000, } }, 'Download Resume'),
 
       resumeDto.map(dto => m('.',
-        m('h3.sticky.resume-title.w3-white.bg-white', dto.heading),
+        m('h3.sticky.resume-title.w3-white.bg-white', {
+          style: {
+            whiteSpace: 'nowrap'
+          }
+        }, dto.heading),
         dto.data.map(data =>
           m('table.w3-table', m('tr',
             m('td.italic.w3-left', data.title),
