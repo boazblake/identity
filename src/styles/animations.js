@@ -88,3 +88,4 @@ export const sideBarChildren = () => {
   animation[1].color = "white"
   return animation
 }
+

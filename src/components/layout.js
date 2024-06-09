@@ -5,9 +5,9 @@ import { Header } from "@/components"
 export const Layout = () => {
   return {
     view: ({ children, attrs: { mdl } }) =>
-      m("#app",
+      m('.entryDiv', m("#app",
         m(Header, { mdl }),
         children,
-      ),
+      )),
   }
 }
