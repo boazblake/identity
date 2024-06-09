@@ -17,7 +17,7 @@ const getRightStyle = ({ settings: { profile } }) => {
 const getLeftStyle = ({ settings: { profile } }) => {
   switch (profile) {
     case 'phone':
-      return { height: "120vh", marginBottom: '10px' }
+      return { height: "120vh", paddingBottom: '10px' }
     case "tablet":
       return { height: "100%", justifyContent: 'center' }
   }
