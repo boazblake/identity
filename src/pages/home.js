@@ -8,7 +8,7 @@ const getRightStyle = ({ settings: { profile } }) => {
   switch (profile) {
 
     case 'phone':
-      return { height: "120%" }
+      return { height: "140%" }
     case "tablet":
       return { height: "100%", justifyContent: 'center' }
   }
@@ -81,7 +81,7 @@ export const Home = {
         ),
 
       ),
-      m('section.column.justify-evenly.w3-half.w3-padding', { style: getRightStyle(mdl) },
+      m('section.column.justify-evenly.w3-half.w3-padding.overflow', { style: getRightStyle(mdl) },
         m(
           "p.w3-center",
           "Self-driven and motivated Software Developer with extensive experience in front-end development, project management, and team leadership."
