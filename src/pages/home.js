@@ -38,12 +38,12 @@ const SheetBtn = {
     title)
 }
 
-const SheetBtns = {
-  view: () => m('.w3-cell-row.w3-block.w3-center.w3-margin.w3-padding',
-    m('.w3-cell', m(SheetBtn, { title: 'Resume', action: () => resumeState.hideSheet = false })),
-    m('.w3-cell', m(SheetBtn, { title: 'Portfolio', action: () => portfolioState.hideSheet = false }))
-  )
+const wrapperClassList = mdl => ['desktop', 'laptop'].includes(mdl.settings.profile) ? '.w3-cell-row.w3-block.w3-center.w3-margin.w3-padding' : '.w3-cell-row.w3-block.w3-center.w3-padding'
+
+const LinkWrapper = {
+  view: ({ children, attrs: { mdl } }) => m(wrapperClassList(mdl), children)
 }
+
 
 const getClassList = mdl => {
   switch (mdl.settings.profile) {
@@ -89,8 +89,12 @@ export const Home = {
           "p.w3-center",
           "Skilled in enhancing application performance, streamlining workflows, and improving user experience."
         ),
-        m(SheetBtns),
-        m(Links),
+        m(LinkWrapper, { mdl },
+          m('.w3-cell', m(SheetBtn, { title: 'Resume', action: () => resumeState.hideSheet = false })),
+          m('.w3-cell', m(SheetBtn, { title: 'Portfolio', action: () => portfolioState.hideSheet = false }))
+        ),
+        m(LinkWrapper, { mdl },
+          m(Links, { mdl })),
 
         m(BottomSheet, { state: resumeState, render: (state) => m(Resume, { mdl, state }) }),
         m(BottomSheet, { state: portfolioState, render: () => m(Portfolio, { mdl }) },)
