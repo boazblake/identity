@@ -2,6 +2,23 @@ import m from 'mithril'
 
 const link = ({ href, title }) => `<a class="w3-border-bottom" target="_blank" href=${href}>${title}</a> `
 
+
+const triggerDownload = () => (e) => {
+  e.preventDefault();
+  var link = document.createElement('a');
+  link.href = '/files/The_Resume_Of_Boaz_Blake.pdf';
+  link.setAttribute('download', 'The_Resume_Of_Boaz_Blake.pdf');
+
+  // Append link to body
+  document.body.appendChild(link);
+
+  // Trigger click
+  link.click();
+
+  // Remove link from body
+  document.body.removeChild(link);
+}
+
 const resumeDto = [
   // {
   //   heading: 'Summary',
@@ -103,7 +120,7 @@ const Resume = {
     return m('#resume',
       { style: { height: state.height } },
 
-      m('a.button.w3-right.sticky', { tabIndex: "1", target: "_blank", rel: "noopener noreferrer", href: '/files/The_Resume_Of_Boaz_Blake.pdf', download: 'The_Resume_Of_Boaz_Blake.pdf', style: { zIndex: 1000, } }, 'Download Resume'),
+      m('a.button.w3-right.sticky', { onclick: triggerDownload(), tabIndex: "1", target: "_blank", rel: "noopener noreferrer", href: '/files/The_Resume_Of_Boaz_Blake.pdf', download: 'The_Resume_Of_Boaz_Blake.pdf', style: { zIndex: 1000, } }, 'Download Resume'),
 
       resumeDto.map(dto => m('.',
         m('h3.sticky.resume-title.w3-white.bg-white', dto.heading),
