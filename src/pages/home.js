@@ -8,7 +8,7 @@ const getRightStyle = ({ settings: { profile } }) => {
   switch (profile) {
 
     case 'phone':
-      return { height: "195%" }
+      return { height: "195%", paddingTop: '20px' }
     case "tablet":
       return { height: "100%", justifyContent: 'center' }
   }
