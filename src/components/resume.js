@@ -120,7 +120,7 @@ const Resume = {
     return m('#resume',
       { style: { height: state.height } },
 
-      m('a.button.w3-right.sticky', { onclick: triggerDownload(), tabIndex: "1", target: "_blank", rel: "noopener noreferrer", href: '/files/The_Resume_Of_Boaz_Blake.pdf', download: 'The_Resume_Of_Boaz_Blake.pdf', style: { zIndex: 1000, } }, 'Download Resume'),
+      m('a.button.w3-right.sticky', { ontouchstart: triggerDownload(), onclick: triggerDownload(), tabIndex: "1", target: "_blank", rel: "noopener noreferrer", href: '/files/The_Resume_Of_Boaz_Blake.pdf', download: 'The_Resume_Of_Boaz_Blake.pdf', style: { zIndex: 1000, } }, 'Download Resume'),
 
       resumeDto.map(dto => m('.',
         m('h3.sticky.resume-title.w3-white.bg-white', {
