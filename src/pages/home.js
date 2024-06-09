@@ -6,6 +6,9 @@ import { BottomSheet, State } from '@/components/bottom-sheet'
 
 const getRightStyle = ({ settings: { profile } }) => {
   switch (profile) {
+
+    case 'phone':
+      return { height: "100%" }
     case "tablet":
       return { height: "100%", justifyContent: 'center' }
   }
@@ -13,6 +16,8 @@ const getRightStyle = ({ settings: { profile } }) => {
 
 const getLeftStyle = ({ settings: { profile } }) => {
   switch (profile) {
+    case 'phone':
+      return { height: "100vh", }
     case "tablet":
       return { height: "100%", justifyContent: 'center' }
   }
@@ -52,7 +57,7 @@ export const Home = {
   view: ({ attrs: { mdl } }) =>
     m(`#home.${getClassList(mdl)}.w3-container`, { style: { height: '90dvh' } },
 
-      m('section.column.justify-evenly.w3-half.w3-container.overflow',
+      m('section.w3-padding.column.justify-evenly.w3-half.w3-container.overflow',
         { style: getLeftStyle(mdl) },
 
         m("h1.w3-large.w3-center",
@@ -72,7 +77,7 @@ export const Home = {
         m("p.w3-row.w3-center",
           m('a.w3-col', { href: "https://boazblake.github.io/identity", target: '-blank' }, "https://BoazBlake.Github.Io/identity"),
           m('a.w3-col', { href: "mailto:boazblake@protonMail.com" }, "BoazBlake@ProtonMail.com"),
-          m('a.w3-col', "347-420-3251")
+          m('a.w3-col', { href: 'tel' }, "347-420-3251")
         ),
 
       ),

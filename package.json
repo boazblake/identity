@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "vite",
     "build": "rm -rf docs; vite build",
+    "update": "yarn build; git add .; git commit -m 'update'; git push;",
     "preview": "vite preview"
   },
   "dependencies": {
