@@ -8,7 +8,7 @@ const getRightStyle = ({ settings: { profile } }) => {
   switch (profile) {
 
     case 'phone':
-      return { height: "180%" }
+      return { height: "170%" }
     case "tablet":
       return { height: "100%", justifyContent: 'center' }
   }
@@ -77,7 +77,7 @@ export const Home = {
         m("p.w3-row.w3-center",
           m('a.w3-col', { href: "https://boazblake.github.io/identity", target: '-blank' }, "https://BoazBlake.Github.Io/identity"),
           m('a.w3-col', { href: "mailto:boazblake@protonMail.com" }, "BoazBlake@ProtonMail.com"),
-          m('a.w3-col', { href: 'tel' }, "347-420-3251")
+          m('a.w3-col', { href: 'tel+3474203251' }, "347-420-3251")
         ),
 
       ),
