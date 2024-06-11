@@ -77,7 +77,7 @@ const Repo = () => {
         }
       )
     },
-    view: () => {
+    view: ({ attrs: idx }) => {
       return (
         state.status == "loading" && "Repo Loading...",
         state.status == "failed" && "Error",
@@ -85,6 +85,7 @@ const Repo = () => {
         m(
           "a.w3-col s12 m6 l4",
           {
+            tabIndex: idx,
             href: `https://boazblake.github.io/${state.name}`,
             target: "_blank",
             oncreate: ({ dom }) =>
@@ -148,7 +149,7 @@ const Portfolio = () => {
             href: `https://bonhamacres.org`,
             target: "_blank",
           }, m('img', { style: { maxWidth: '80%', height: 'auto', }, src: 'images/baca.webp' }), m('p', 'Neighborhood Civic Association website that I am webmaster of. Created using mithriljs and expressjs')),
-          mdl.portfolio.reposList.map((url) => m(Repo, { url, mdl }))
+          mdl.portfolio.reposList.map((url, idx) => m(Repo, { url, mdl, idx }))
         )
       ),
   }
