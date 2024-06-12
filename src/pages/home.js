@@ -75,7 +75,7 @@ export const Home = {
           src: "images/me.webp",
         }),
         m(rowWrapper, { mdl },
-          m('a.w3-cell', { style: { fontSize: '4rem' }, href: 'tel:+3474203251' }, m.trust('&#x2706;')),
+          m('a.w3-cell', { style: { fontSize: '4rem' }, href: 'tel:+3474203251' }, m.trust('&#9742;')),
           m('a.w3-cell', { style: { fontSize: '4rem' }, href: "mailto:boazblake@protonMail.com" }, m.trust('&#x2709;'),
           )),
       ),
