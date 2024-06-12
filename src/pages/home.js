@@ -75,9 +75,11 @@ export const Home = {
           src: "images/me.webp",
         }),
         m(rowWrapper, { mdl },
-          m('a.w3-cell', { style: { color: 'white', fontSize: '4rem' }, href: 'tel:+3474203251' }, m.trust('☎')),
-          m('a.w3-cell', { style: { color: 'white', fontSize: '4rem' }, href: "mailto:boazblake@protonMail.com" }, m.trust('✉'),
-          )),
+          m('a.w3-cell', { href: 'tel:+3474203251' },
+            m('img', { style: { width: '50px' }, src: 'https://cdn-icons-png.flaticon.com/512/15/15874.png' })),
+          m('a.w3-cell', { href: "mailto:boazblake@protonMail.com" }, m('img', { style: { width: '50px' }, src: 'https://cdn-icons-png.flaticon.com/512/542/542638.png' }),
+          )
+        ),
       ),
       m('section.column.justify-evenly.w3-half.w3-padding.overflow', { style: getRightStyle(mdl) },
         m(
