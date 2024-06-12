@@ -40,7 +40,7 @@ const SheetBtn = {
 
 const wrapperClassList = mdl => ['desktop', 'laptop'].includes(mdl.settings.profile) ? '.w3-cell-row.w3-block.w3-center.w3-margin.w3-padding' : '.w3-cell-row.w3-block.w3-center.w3-padding'
 
-const LinkWrapper = {
+const rowWrapper = {
   view: ({ children, attrs: { mdl } }) => m(wrapperClassList(mdl), children)
 }
 
@@ -74,12 +74,10 @@ export const Home = {
           ,
           src: "images/me.webp",
         }),
-        m("p.w3-row.w3-center",
-          m('a.w3-col', { href: "https://boazblake.github.io/identity", target: '-blank' }, "https://BoazBlake.Github.Io/identity"),
-          m('a.w3-col', { href: "mailto:boazblake@protonMail.com" }, "BoazBlake@ProtonMail.com"),
-          m('a.w3-col', { href: 'tel:+3474203251' }, "347-420-3251")
-        ),
-
+        m(rowWrapper, { mdl },
+          m('a.w3-cell', { style: { fontSize: '4rem' }, href: 'tel:+3474203251' }, m.trust('&#x2706;')),
+          m('a.w3-cell', { style: { fontSize: '4rem' }, href: "mailto:boazblake@protonMail.com" }, m.trust('&#x2709;'),
+          )),
       ),
       m('section.column.justify-evenly.w3-half.w3-padding.overflow', { style: getRightStyle(mdl) },
         m(
@@ -89,11 +87,11 @@ export const Home = {
           "p.w3-center",
           "Skilled in enhancing application performance, streamlining workflows, and improving user experience."
         ),
-        m(LinkWrapper, { mdl },
+        m(rowWrapper, { mdl },
           m('.w3-cell', m(SheetBtn, { title: 'Resume', action: () => resumeState.hideSheet = false })),
           m('.w3-cell', m(SheetBtn, { title: 'Portfolio', action: () => portfolioState.hideSheet = false }))
         ),
-        m(LinkWrapper, { mdl },
+        m(rowWrapper, { mdl },
           m(Links, { mdl })),
 
         m(BottomSheet, { state: resumeState, render: (state) => m(Resume, { mdl, state }) }),

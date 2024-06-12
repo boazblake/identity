@@ -3,6 +3,11 @@ import '../styles/bottom-sheet.css'
 
 const getHeight = (state) => {
   const sheetHeight = Math.max(14, Math.min(100, state.sheetHeight))
+  if (sheetHeight < 15) {
+    state.hideSheet = true
+    resetState(state)
+  }
+
   return `${sheetHeight}dvh`
 }
 
