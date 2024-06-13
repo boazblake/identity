@@ -3,6 +3,8 @@ import { Links } from '@/components/links'
 import { Resume } from '@/components/resume'
 import { Portfolio } from '@/components/portfolio'
 import { BottomSheet, State } from '@/components/bottom-sheet'
+import { Animate, popIn } from "@/styles"
+import { randomPause } from "@/Utils"
 
 const getRightStyle = ({ settings: { profile } }) => {
   switch (profile) {
@@ -29,6 +31,8 @@ const portfolioState = State()
 const resumeState = State()
 
 const SheetBtn = {
+  oncreate: Animate(popIn, randomPause),
+
   view: ({ attrs: { action, title } }) => m("button", {
     onclick: action,
     "type": "button",
@@ -75,10 +79,19 @@ export const Home = {
           src: "images/me.webp",
         }),
         m(rowWrapper, { mdl },
-          m('a.w3-cell', { href: 'tel:+3474203251' },
-            m('img', { style: { width: '50px' }, src: 'https://cdn-icons-png.flaticon.com/512/15/15874.png' })),
-          m('a.w3-cell', { href: "mailto:boazblake@protonMail.com" }, m('img', { style: { width: '50px' }, src: 'https://cdn-icons-png.flaticon.com/512/542/542638.png' }),
-          )
+          m('a.w3-cell', {
+            href: 'tel:+3474203251'
+          }, m(SheetBtn, {
+            oncreate: Animate(popIn, randomPause),
+            title:
+              m('img', { style: { width: '25px' }, src: 'https://cdn-icons-png.flaticon.com/512/15/15874.png' })
+          })),
+          m('a.w3 - cell', {
+            href: "mailto:boazblake@protonMail.com"
+          }, m(SheetBtn, {
+            oncreate: Animate(popIn, randomPause),
+            title: m('img', { style: { width: '25px' }, src: 'https://cdn-icons-png.flaticon.com/512/542/542638.png' })
+          }))
         ),
       ),
       m('section.column.justify-evenly.w3-half.w3-padding.overflow', { style: getRightStyle(mdl) },
@@ -96,8 +109,12 @@ export const Home = {
         m(rowWrapper, { mdl },
           m(Links, { mdl })),
 
-        m(BottomSheet, { state: resumeState, render: (state) => m(Resume, { mdl, state }) }),
-        m(BottomSheet, { state: portfolioState, render: () => m(Portfolio, { mdl }) },)
+        m(BottomSheet, {
+          state: resumeState, render: (state) => m(Resume, { mdl, state })
+        }),
+        m(BottomSheet, {
+          state: portfolioState, render: () => m(Portfolio, { mdl })
+        },)
       ),
     )
 }
