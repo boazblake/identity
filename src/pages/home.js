@@ -33,7 +33,7 @@ const resumeState = State()
 const SheetBtn = {
   oncreate: Animate(popIn, randomPause),
 
-  view: ({ attrs: { action, title } }) => m("button", {
+  view: ({ attrs: { action, title } }) => m("button.w3-white", {
     onclick: action,
     "type": "button",
     "id": "open-sheet",
