@@ -27,13 +27,11 @@ const Link = () => {
         target ? "a" : m.route.Link,
         {
           class: 'w3-cell',
-          // onmouseenter: () => (state.hover = true),
-          // onmouseleave: () => (state.hover = false),
           oncreate: Animate(popIn, randomPause),
           target: target ? "_blank" : "",
           href,
         },
-        m('button', m("img", {
+        m('button.w3-white', m("img", {
           style: {
             margin: "2px",
             height: "50px",
