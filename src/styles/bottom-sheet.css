@@ -22,8 +22,7 @@
   }
 }
 
-#bottomsheet >
-a,
+#bottomsheet > a,
 button,
 input,
 textarea,
@@ -50,8 +49,6 @@ textarea,
 
   -webkit-tap-highlight-color: transparent;
 }
-
-
 
 textarea {
   resize: none;
@@ -82,7 +79,9 @@ button {
   bottom: -3dvh;
   z-index: 2;
   visibility: visible;
-  transition: opacity 0.5s, visibility 0.5s;
+  transition:
+    opacity 0.5s,
+    visibility 0.5s;
 }
 
 .sheet[aria-hidden="true"] {
@@ -106,12 +105,13 @@ button {
   display: flex;
   flex-direction: column;
 
-  overflow-y:auto;
+  overflow-y: auto;
   border-radius: 1rem 1rem 0 0;
 
   background: var(--background);
 
-  --default-transitions: transform 0.5s, width, box-shadow, height, border-radius 0.5s;
+  --default-transitions: transform 0.5s, width, box-shadow, height,
+    border-radius 0.5s;
 
   transition: var(--default-transitions);
   transform: translateY(0);
@@ -132,7 +132,10 @@ button {
   border-radius: 0;
   max-width: none;
   transition: var(--default-transitions);
-  transition: width, height, box-shadow 0.5s ease-in;
+  transition:
+    width,
+    height,
+    box-shadow 0.5s ease-in;
   box-shadow: none;
 }
 
@@ -147,9 +150,8 @@ button {
 
 .sheet .controls:hover .draggable-thumb {
   width: 4rem;
-  transition: width 0.4s  ease-in;
+  transition: width 0.4s ease-in;
 }
-
 
 .sheet .draggable-area {
   width: 3rem;
@@ -162,7 +164,7 @@ button {
   height: 0.5rem;
   background: var(--divider);
   border-radius: 0.125rem;
-  transition: width 0.4s  ease-in;
+  transition: width 0.4s ease-in;
 }
 
 .sheet a.close-sheet {

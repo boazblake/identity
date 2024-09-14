@@ -15,17 +15,20 @@ export const popIn = [
     transform: "scale(1)",
     opacity: 1,
   },
-]
+];
 
 export const fadeIn = [
   {
     opacity: 0,
+    transform: "scale(0.99)", // Start with a slightly smaller size
+    transformOrigin: "center", // Start scaling from the center
   },
   {
     opacity: 1,
+    transform: "scale(1)", // Grow to full size
+    transformOrigin: "center", // Keep the origin as the center
   },
-]
-
+];
 export const fadeInUp = [
   {
     opacity: 0,
@@ -35,7 +38,7 @@ export const fadeInUp = [
     opacity: 1,
     transform: "translate3d(0, 0, 0)",
   },
-]
+];
 
 export const slideInRight = [
   {
@@ -45,7 +48,7 @@ export const slideInRight = [
     transform: "translate3d(0, 0, 0)",
     visibility: "visible",
   },
-]
+];
 
 export const slideInLeft = [
   {
@@ -55,7 +58,7 @@ export const slideInLeft = [
   {
     transform: "translate3d(0, 0, 0)",
   },
-]
+];
 
 export const slideOutRight = [
   {
@@ -65,7 +68,7 @@ export const slideOutRight = [
     visibility: "hidden",
     transform: "translate3d(100%, 0, 0)",
   },
-]
+];
 
 export const slideInDown = [
   {
@@ -75,17 +78,16 @@ export const slideInDown = [
     transform: "translate3d(0, 0, 0)",
     visibility: "visible",
   },
-]
+];
 
 export const sideBarIn = () => {
-  let animation = Object.assign(slideInLeft)
-  animation[1].background = "black"
-  return animation
-}
+  let animation = Object.assign(slideInLeft);
+  animation[1].background = "black";
+  return animation;
+};
 
 export const sideBarChildren = () => {
-  let animation = Object.assign(slideInRight)
-  animation[1].color = "white"
-  return animation
-}
-
+  let animation = Object.assign(slideInRight);
+  animation[1].color = "white";
+  return animation;
+};
