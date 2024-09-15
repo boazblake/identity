@@ -173,11 +173,6 @@ a {
   transform: scale(0);
 }
 
-#resume {
-  /* height: 90%;
-  overflow-y:scroll; */
-}
-
 button {
   background-color: #007bff; /* Accent color */
   color: white;
