@@ -273,3 +273,23 @@ a {
   cursor: pointer; /* Ensure the cursor is set to pointer */
   pointer-events: auto; /* Ensure pointer events are enabled */
 }
+
+.overlay-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+  background-color: white; /* Blue overlay */
+  clip-path: circle(150 at center); /* Start with a small circle */
+  transition:
+    clip-path var(--duration) ease-in-out,
+    opacity 2s ease-in-out; /* Animate the clip-path and fade-out */
+  opacity: 1;
+}
+
+.overlay-container.reveal {
+  clip-path: circle(150% at center); /* Expands to reveal content */
+  opacity: 0; /* Fade out */
+}

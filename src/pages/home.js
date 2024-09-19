@@ -64,12 +64,27 @@ const getClassList = (mdl) => {
 };
 
 export const Home = {
-  oncreate: Animate(fadeIn),
+  // oncreate: Animate(fadeIn),
   view: ({ attrs: { mdl } }) =>
     m(
       `#home.${getClassList(mdl)}.w3-container`,
       { style: { height: "90dvh" } },
+      m(".overlay-container", {
+        oncreate: (vnode) => {
+          const duration = 2000; // Default animation duration (2s)
+          vnode.dom.style.setProperty("--duration", `${duration}ms`);
 
+          // Start the circle expansion animation after a brief delay
+          setTimeout(() => {
+            vnode.dom.classList.add("reveal");
+          }, 100); // Small delay to ensure rendering
+
+          // Remove the vnode.dom after animation completes
+          setTimeout(() => {
+            vnode.dom.style.display = "none";
+          }, duration + 500); // Add a small delay for the fade-out to finish
+        },
+      }),
       m(
         "section.w3-padding.column.justify-evenly.overflow",
         { style: getLeftStyle(mdl) },
