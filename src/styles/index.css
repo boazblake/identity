@@ -13,7 +13,7 @@
   --green: #28a745;
   --teal: #20c997;
   --cyan: #17a2b8;
-  --white: #fff;
+  --white: #fefafa;
   --gray: #747474;
   --gray-dark: #232321;
   --primary: #007bff;
@@ -175,7 +175,7 @@ a {
 
 button {
   background-color: #007bff; /* Accent color */
-  color: white;
+  color: var(--white);
   padding: 10px 20px;
   border-radius: 25px;
   border: none;
@@ -217,7 +217,7 @@ button:hover {
   width: 100%;
   height: 100%;
   display: flex;
-  background-color: white;
+  background-color: var(--white);
   animation: fadeOut 2s forwards;
 }
 
@@ -281,7 +281,7 @@ a {
   width: 100vw;
   height: 100vh;
   z-index: 10;
-  background-color: white; /* Blue overlay */
+  background-color: var(--white); /* Blue overlay */
   clip-path: circle(150 at center); /* Start with a small circle */
   transition:
     clip-path var(--duration) ease-in-out,
@@ -292,4 +292,30 @@ a {
 .overlay-container.reveal {
   clip-path: circle(150% at center); /* Expands to reveal content */
   opacity: 0; /* Fade out */
+}
+
+.mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  --hole-size: 1px;
+  --hole-x: 50%;
+  --hole-y: 50%;
+  --inner-color: rgba(255, 255, 255, 0); /* Fully transparent in the middle */
+  --outer-color: rgba(255, 255, 255, 1); /* Fully opaque at the edges */
+
+  /* Radial gradient flipped: starts with transparent in the center and opaque at the edges */
+  -webkit-mask: radial-gradient(
+    circle var(--hole-size) at var(--hole-x) var(--hole-y),
+    var(--inner-color) 0%,
+    var(--outer-color) 100%
+  );
+  mask: radial-gradient(
+    circle var(--hole-size) at var(--hole-x) var(--hole-y),
+    var(--inner-color) 0%,
+    var(--outer-color) 100%
+  );
 }

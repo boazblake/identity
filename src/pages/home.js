@@ -1,5 +1,6 @@
 import m from "mithril";
 import { Links } from "@/components/links";
+import { Mask } from "@/components/mask";
 import { Resume } from "@/components/resume";
 import { Portfolio } from "@/components/portfolio";
 import { BottomSheet, State } from "@/components/bottom-sheet";
@@ -8,8 +9,10 @@ import { Animate, fadeIn } from "@/styles";
 
 const getRightStyle = ({ settings: { profile } }) => {
   switch (profile) {
+    case "desktop":
+      return { width: "100%" };
     case "phone":
-      return { height: "200%" };
+      return { height: "200%", width: "100%" };
     case "tablet":
       return { height: "100%", justifyContent: "center", width: "49.99999%" };
   }
@@ -17,8 +20,10 @@ const getRightStyle = ({ settings: { profile } }) => {
 
 const getLeftStyle = ({ settings: { profile } }) => {
   switch (profile) {
+    case "desktop":
+      return { width: "100%" };
     case "phone":
-      return { height: "200%" };
+      return { height: "200%", width: "100%" };
     case "tablet":
       return { height: "100%", justifyContent: "center", width: "49.99999%" };
   }
@@ -69,22 +74,22 @@ export const Home = {
     m(
       `#home.${getClassList(mdl)}.w3-container`,
       { style: { height: "90dvh" } },
-      m(".overlay-container", {
-        oncreate: (vnode) => {
-          const duration = 2000; // Default animation duration (2s)
-          vnode.dom.style.setProperty("--duration", `${duration}ms`);
-
-          // Start the circle expansion animation after a brief delay
-          setTimeout(() => {
-            vnode.dom.classList.add("reveal");
-          }, 100); // Small delay to ensure rendering
-
-          // Remove the vnode.dom after animation completes
-          setTimeout(() => {
-            vnode.dom.style.display = "none";
-          }, duration + 500); // Add a small delay for the fade-out to finish
-        },
-      }),
+      // m(".overlay-container", {
+      //   oncreate: (vnode) => {
+      //     const duration = 2000; // Default animation duration (2s)
+      //     vnode.dom.style.setProperty("--duration", `${duration}ms`);
+      //
+      //     // Start the circle expansion animation after a brief delay
+      //     setTimeout(() => {
+      //       vnode.dom.classList.add("reveal");
+      //     }, 100); // Small delay to ensure rendering
+      //
+      //     // Remove the vnode.dom after animation completes
+      //     setTimeout(() => {
+      //       vnode.dom.style.display = "none";
+      //     }, duration + 500); // Add a small delay for the fade-out to finish
+      //   },
+      // }),
       m(
         "section.w3-padding.column.justify-evenly.overflow",
         { style: getLeftStyle(mdl) },
@@ -94,6 +99,7 @@ export const Home = {
         m("img#me.w3-block.w3-content.show", {
           src: "images/me.webp",
         }),
+        m(Mask),
         m(
           rowWrapper,
           { mdl },
