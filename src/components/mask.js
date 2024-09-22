@@ -28,7 +28,7 @@ const animateHole = (element) => {
 
     // console.log(holeSize, angle, radius);
     // Continue the animation at 60 FPS
-    angle < 10 ? requestAnimationFrame(loop) : element.remove();
+    angle < 5 ? requestAnimationFrame(loop) : element.remove();
   };
   // Start the animation loop
   requestAnimationFrame(loop);
