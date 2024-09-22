@@ -3,8 +3,8 @@ import m from "mithril";
 // Helper function to update CSS variables for the hole
 const updateHolePosition = (element, holeSize, holeX, holeY) => {
   element.style.setProperty("--hole-size", `${holeSize}px`);
-  // element.style.setProperty("--hole-x", `${holeX}%`);
-  // element.style.setProperty("--hole-y", `${holeY}%`);
+  element.style.setProperty("--hole-x", `${holeX}%`);
+  element.style.setProperty("--hole-y", `${holeY}%`);
 };
 
 // Function to animate the hole size and movement
@@ -28,7 +28,7 @@ const animateHole = (element) => {
 
     // console.log(holeSize, angle, radius);
     // Continue the animation at 60 FPS
-    angle < 5 ? requestAnimationFrame(loop) : element.remove();
+    angle < 3 ? requestAnimationFrame(loop) : element.remove();
   };
   // Start the animation loop
   requestAnimationFrame(loop);
