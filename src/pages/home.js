@@ -33,8 +33,6 @@ const portfolioState = State();
 const resumeState = State();
 
 const SheetBtn = {
-  // oncreate: Animate(popIn, randomPause),
-
   view: ({ attrs: { action, title } }) =>
     m(
       "button.w3-white",
@@ -69,32 +67,13 @@ const getClassList = (mdl) => {
 };
 
 export const Home = {
-  // oncreate: Animate(fadeIn),
   view: ({ attrs: { mdl } }) =>
     m(
       `#home.${getClassList(mdl)}.w3-container`,
       { style: { height: "90dvh" } },
-      // m(".overlay-container", {
-      //   oncreate: (vnode) => {
-      //     const duration = 2000; // Default animation duration (2s)
-      //     vnode.dom.style.setProperty("--duration", `${duration}ms`);
-      //
-      //     // Start the circle expansion animation after a brief delay
-      //     setTimeout(() => {
-      //       vnode.dom.classList.add("reveal");
-      //     }, 100); // Small delay to ensure rendering
-      //
-      //     // Remove the vnode.dom after animation completes
-      //     setTimeout(() => {
-      //       vnode.dom.style.display = "none";
-      //     }, duration + 500); // Add a small delay for the fade-out to finish
-      //   },
-      // }),
       m(
         "section.w3-padding.column.justify-evenly.overflow",
         { style: getLeftStyle(mdl) },
-
-        m("h1.w3-large.w3-center", "Full Stack JS Developer"),
 
         m("img#me.w3-block.w3-content.show", {
           src: "images/me.webp",
@@ -109,7 +88,6 @@ export const Home = {
               href: "tel:+3474203251",
             },
             m(SheetBtn, {
-              // oncreate: Animate(popIn, randomPause),
               title: m("img", {
                 style: { width: "25px" },
                 src: "https://cdn-icons-png.flaticon.com/512/15/15874.png",
@@ -122,7 +100,6 @@ export const Home = {
               href: "mailto:boazblake@protonMail.com",
             },
             m(SheetBtn, {
-              // oncreate: Animate(popIn, randomPause),
               title: m("img", {
                 style: { width: "25px" },
                 src: "https://cdn-icons-png.flaticon.com/512/542/542638.png",
@@ -136,7 +113,7 @@ export const Home = {
         { style: getRightStyle(mdl) },
         m(
           "p.w3-center",
-          "Self-driven and motivated Software Developer with extensive experience in front-end development, project management, and team leadership.",
+          "FullStack Software Developer with extensive experience in web development, project management, and team leadership.",
         ),
         m(
           "p.w3-center",

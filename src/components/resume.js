@@ -25,8 +25,7 @@ const resumeDto = [
     data: [
       {
         info: [
-          "Self-driven and motivated Software Engineer with extensive experience in software development, project management, and team leadership.",
-          "Skilled in enhancing application performance, streamlining workflows, and improving user experience.",
+          "Self-driven Software Engineer with extensive experience in software development, leadership, and performance optimization, enhancing user experience and workflow efficiency.",
         ],
       },
     ],
@@ -39,13 +38,12 @@ const resumeDto = [
         location: "Empyrean Benefits Solution | Houston, TX",
         date: "April 2019 – Present",
         info: [
-          "Lead developer of the main in-house application used by business analysts and Tech Directors for client configurations.",
-          "Port legacy .NET applications to modern front-end frameworks, including SQL database updates, API creation, and maintaining the Node-Express proxy server.",
-          "Manage multiple projects, including “dockerizing” the JS web client app and NodeJS proxy app to enhance developer experience.",
-          "Onboard and train junior and offshore developers on the codebase and best practices.",
-          "Collaborate with Tech Directors to improve UX/UI and application efficiency, reducing operation times.",
-          "Delivered a previously delayed feature ahead of schedule by independently managing the infrastructure, creating SQL tables, APIs, and a complex front-end feature.",
-          "Currently focused on streamlining workflows and enhancing functionality and performance.",
+          "Lead developer for in-house application serving over 100 analysts and directors, managing client configurations.",
+          "Ported legacy .NET to modern frameworks, improving load times by 30%.",
+          "Managed 'dockerizing' projects, reducing development setup time by 50%.",
+          "Mentored 10+ developers, enhancing productivity and code quality.",
+          "Delivered complex features ahead of schedule, improving infrastructure and reducing operation times by 25%.",
+          "Streamlined workflows, enhancing functionality and performance.",
         ],
       },
       {
@@ -53,9 +51,9 @@ const resumeDto = [
         location: "Empyrean Benefits Solution | Houston, TX",
         date: "August 2016 – April 2019",
         info: [
-          "Developed applications in multiple frameworks, including C#, PHP, Python, JavaScript, NativeScript, Vue, and AureliaJS.",
-          "Built the first company mobile application (EmpyreanGO) using Vue and NativeScript.",
-          "Created an employee onboarding application using AureliaJS with access integration for HR and customer service.",
+          "Developed applications across C#, PHP, Python, JavaScript, Vue, NativeScript, and AureliaJS.",
+          "Built first company mobile app (EmpyreanGO) using Vue and NativeScript.",
+          "Created employee onboarding app with AureliaJS, integrating HR and customer service access.",
         ],
       },
     ],
@@ -68,19 +66,16 @@ const resumeDto = [
         location: "The Iron Yard | Houston, TX",
         date: "February 2016 – April 2016",
         info: [
-          "Intensive 3-month course on HTML, JavaScript, and CSS with a focus on SOLID OOP principles.",
-          "Supplemented learning with the Harvard CS50 course and studied functional programming, Lambda calculus, and category theory.",
-          "Built a responsive event organizer using ReactJS and MongoDB.",
+          "Completed intensive course on HTML, CSS, JavaScript with focus on SOLID principles.",
+          "Built responsive event organizer with ReactJS and MongoDB.",
         ],
       },
       {
-        title:
-          "PhD Human Space Exploration | Exercise Immunology (Epigenetic Inheritance) – Not Completed",
+        title: "PhD in Human Space Exploration (Incomplete)",
         location: "University of Houston | Houston, TX",
         date: "September 2011 – May 2014",
         info: [
-          "NASA HRP Grant #NNX12AF04G: Studied the effects of gravitational forces on spinal cord excitability.",
-          "Researched exercise as an environmental stressor and its impact on epigenetic inheritance.",
+          "Research focused on gravitational effects on spinal cord excitability and exercise immunology.",
         ],
       },
       {
@@ -97,21 +92,12 @@ const resumeDto = [
     heading: "Background",
     data: [
       {
-        title: "Tactical Firearms Instructor",
-        location: "Top Gun Range | Houston, TX",
-        date: "January 2016 – August 2016",
-        info: [
-          "Educated public and private sectors on all aspects of gun ownership and usage.",
-          "Focused on tactical application integrating armed and unarmed scenarios.",
-        ],
-      },
-      {
         title: "PhD Research Assistant",
         location: "University of Houston | Houston, TX",
         date: "September 2011 – May 2014",
         info: [
-          "Taught undergraduate classes on biomechanics, statistics, and health and fitness.",
-          "Researched the effects of spaceflight on the nervous system and genetic impacts of environmental stressors on immune function.",
+          "Taught undergraduate classes on biomechanics, statistics, and health/fitness.",
+          "Researched spaceflight's impact on the nervous system and environmental stressors on immune function.",
         ],
       },
       {
@@ -119,14 +105,12 @@ const resumeDto = [
         location: "Israel Defense Forces | Israel",
         date: "October 2000 – December 2005",
         info: [
-          "Served as a paratrooper before working as an anti-terrorist officer.",
-          "Provided close protection services to individuals and teams throughout Israel.",
+          "Enhanced situational awareness and strategic planning through paratrooper and anti-terror roles.",
         ],
       },
     ],
   },
 ];
-
 const Resume = {
   view: ({ attrs: { state } }) => {
     return m(
