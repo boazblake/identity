@@ -72,59 +72,6 @@
 
 .resume-card-container.bottom {
   transform: translateY(60px); /* Place below timeline */
-}/* Dark Mode Variables */
-[data-theme="dark"] {
-  --blue: #02151e;
-  --indigo: #5a2d82;
-  --purple: #4b2f5b;
-  --pink: #a12b5c;
-  --red: #8b1e2f;
-  --orange: #8f6436;
-  --yellow: #8f7c4a;
-  --green: #1f6b38;
-  --teal: #177060;
-  --cyan: #125e6c;
-  --white: #0d0d0d;
-  --gray: #9b9b9b;
-  --gray-dark: #f8f9fa;
-  --primary: #375a7f;
-  --secondary: #525252;
-  --success: #1d6836;
-  --info: #12687c;
-  --warning: #8f7c4a;
-  --danger: #7a1d2f;
-  --light: #1f1f1f;
-  --dark: #f5f5f5;
-}
-
-/* Global Styles for Dark Mode */
-[data-theme="dark"] body {
-  background-color: var(--gray-dark);
-  color: var(--gray);
-}
-
-[data-theme="dark"] a {
-  color: var(--cyan);
-}
-
-[data-theme="dark"] .glass {
-  background-color: rgba(0, 0, 0, 0.6);
-  color: var(--gray);
-}
-
-[data-theme="dark"] button {
-  background-color: var(--primary);
-  color: var(--white);
-}
-
-[data-theme="dark"] button:hover {
-  background-color: var(--blue);
-  color: var(--white);
-}
-
-[data-theme="dark"] #header {
-  background-color: var(--blue);
-  color: var(--white);
 }
 
 :root {
