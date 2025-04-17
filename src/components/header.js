@@ -82,28 +82,6 @@ export const Header = {
               setTimeout(() => dom.classList.remove("type-writer"))),
           style: { maxWidth: "350px" },
         },
-        m("code", "{ Boaz Blake }"),
-        m(
-          "button.w3-btn",
-          {
-            onclick: () => {
-              const root = document.documentElement;
-              const isDarkMode = root.getAttribute("data-theme") === "dark";
-
-              // Toggle theme and save to local storage
-              if (isDarkMode) {
-                root.setAttribute("data-theme", "light");
-                localStorage.setItem("theme", "light");
-              } else {
-                root.setAttribute("data-theme", "dark");
-                localStorage.setItem("theme", "dark");
-              }
-            },
-            id: "theme-toggle",
-            ariaLabel: "Toggle Dark Mode",
-          },
-          "toggle theme",
-        ),
-      ),
+        m("code", "{ Boaz Blake }")
     ),
 };
