@@ -102,7 +102,7 @@ export const Header = {
             id: "theme-toggle",
             ariaLabel: "Toggle Dark Mode",
           },
-          "wtf",
+          "toggle theme",
         ),
       ),
     ),
