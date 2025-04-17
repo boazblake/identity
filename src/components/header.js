@@ -83,5 +83,6 @@ export const Header = {
           style: { maxWidth: "350px" },
         },
         m("code", "{ Boaz Blake }")
+       )
     ),
 };
