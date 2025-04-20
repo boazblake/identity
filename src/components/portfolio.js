@@ -60,7 +60,6 @@ const Repo = () => {
   return {
     oninit: ({ attrs: { mdl, name, url } }) => {
       state.name = name;
-      console.log("??", state.name);
       getRepo(state).then(
         ({ description, homepage }) => {
           state.errors = null;
@@ -77,7 +76,6 @@ const Repo = () => {
       );
     },
     view: ({ attrs: { url, name, idx } }) => {
-      console.log(url, name);
       return (
         state.status == "loading" && "Repo Loading...",
         state.status == "failed" && "Error",
@@ -126,7 +124,6 @@ const Portfolio = () => {
         .then((repos) =>
           repos
             .filter((repo) => {
-              console.log(repo);
               return (
                 repo.homepage &&
                 repo.homepage.includes("boazblake") &&
