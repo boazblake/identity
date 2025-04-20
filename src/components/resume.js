@@ -6,7 +6,7 @@ const link = ({ href, title }) =>
 const triggerDownload = () => (e) => {
   e.preventDefault();
   var link = document.createElement("a");
-  link.href = "/files/The_Resume_Of_Boaz_Blake.pdf";
+  link.href = "/identity/files/The_Resume_Of_Boaz_Blake.pdf";
   link.setAttribute("download", "The_Resume_Of_Boaz_Blake.pdf");
 
   // Append link to body
