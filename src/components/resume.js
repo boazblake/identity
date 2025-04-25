@@ -6,8 +6,8 @@ const link = ({ href, title }) =>
 const triggerDownload = () => (e) => {
   e.preventDefault();
   var link = document.createElement("a");
-  link.href = "/identity/files/The_Resume_Of_Boaz_Blake.pdf";
-  link.setAttribute("download", "The_Resume_Of_Boaz_Blake.pdf");
+  link.href = "/identity/files/BOAZ_RESUME.pdf";
+  link.setAttribute("download", "BOAZ_BLAKE_FRONTEND_DEVELOPER_RESUME.pdf");
 
   // Append link to body
   document.body.appendChild(link);
@@ -25,7 +25,12 @@ const resumeDto = [
     data: [
       {
         info: [
-          "Self-driven Software Engineer with extensive experience in software development, leadership, and performance optimization, enhancing user experience and workflow efficiency.",
+          `Results-driven Senior Software Engineer with over 8 years of experience in frontend
+          development, specializing in ReactJS and modern JavaScript frameworks. Proven expertise 
+          in architecting scalable web applications, optimizing UI performance, and leading design 
+          system implementations. Adept at collaborating with cross-functional teams, mentoring 
+          junior developers, and integrating RESTful APIs and GraphQL. Passionate about delivering 
+          high-fidelity, user-centric solutions with a focus on innovation and excellence.`,
         ],
       },
     ],
@@ -38,12 +43,24 @@ const resumeDto = [
         location: "Empyrean Benefits Solution | Houston, TX",
         date: "April 2019 – Present",
         info: [
-          "Lead developer for in-house application serving over 100 analysts and directors, managing client configurations.",
-          "Ported legacy .NET to modern frameworks, improving load times by 30%.",
-          "Managed 'dockerizing' projects, reducing development setup time by 50%.",
-          "Mentored 10+ developers, enhancing productivity and code quality.",
-          "Delivered complex features ahead of schedule, improving infrastructure and reducing operation times by 25%.",
-          "Streamlined workflows, enhancing functionality and performance.",
+          `Lead developer for the company’s primary in-house application, utilized by business 
+            analysts and Tech Directors for client configurations, transitioning a legacy .NET 
+            application to a modern ReactJS-style (AureliaJS) frontend architecture.`,
+          `Architected and maintained scalable frontend solutions, enhancing performance 
+          through efficient rendering strategies and modern caching techniques.`,
+          `Designed and implemented a reusable component library to ensure UI consistency 
+          across applications, collaborating with designers to translate Figma mockups into 
+          pixel-perfect interfaces.`,
+          `Optimized build processes using Webpack and Babel, and enhanced CI/CD 
+          pipelines with GitHub Actions to improve developer efficiency and onboarding.`,
+          `Integrated RESTful APIs and C# .NET Entity Framework request handlers, ensuring 
+          seamless data consumption and performance.`,
+          `Mentored junior developers and conducted code reviews, establishing best 
+          practices for frontend development and reducing operation times by 20% through 
+          UX/UI enhancements.`,
+          `Delivered a delayed configuration feature ahead of schedule by independently 
+          architecting infrastructure, including SQL table creation, API development, and a 
+          complex frontend interface.`,
         ],
       },
       {
@@ -51,9 +68,15 @@ const resumeDto = [
         location: "Empyrean Benefits Solution | Houston, TX",
         date: "August 2016 – April 2019",
         info: [
-          "Developed applications across C#, PHP, Python, JavaScript, Vue, NativeScript, and AureliaJS.",
-          "Built first company mobile app (EmpyreanGO) using Vue and NativeScript.",
-          "Created employee onboarding app with AureliaJS, integrating HR and customer service access.",
+          `Developed responsive web applications across multiple frameworks (ReactJS, Vue, 
+                AureliaJS, NativeScript), including the company’s first mobile app (EmpyreanGO) 
+                built with Vue and NativeScript.`,
+          `Created an employee onboarding application in AureliaJS, integrating HR and 
+                customer service access with high design fidelity.`,
+          `Optimized CSS using SASS and styled-components, improving load times and 
+                maintainability of UI components.`,
+          `Collaborated with backend teams to integrate APIs, enhancing application 
+                functionality and user experience. `,
         ],
       },
     ],
@@ -66,8 +89,12 @@ const resumeDto = [
         location: "The Iron Yard | Houston, TX",
         date: "February 2016 – April 2016",
         info: [
-          "Completed intensive course on HTML, CSS, JavaScript with focus on SOLID principles.",
-          "Built responsive event organizer with ReactJS and MongoDB.",
+          `Completed an intensive 3-month course focusing on HTML, JavaScript, CSS, and 
+          SOLID principles of OOP.`,
+          `Built a responsive Event Organizer application using ReactJS and MongoDB, 
+           emphasizing performance optimization and modern frontend practices.`,
+          `Supplemented learning with Harvard CS50 (David J. Malan), Functional 
+           Programming (Brian Lonsdorf), and Category Theory (Bartosz Milewski) courses.`,
         ],
       },
       {
@@ -75,7 +102,8 @@ const resumeDto = [
         location: "University of Houston | Houston, TX",
         date: "September 2011 – May 2014",
         info: [
-          "Research focused on gravitational effects on spinal cord excitability and exercise immunology.",
+          `Conducted research on gravitational forces and epigenetic inheritance under NASA 
+            HRP Grant #NNX12AF04G.`,
         ],
       },
       {
@@ -83,7 +111,8 @@ const resumeDto = [
         location: "James Madison University | Harrisonburg, VA",
         date: "August 2007 – May 2010",
         info: [
-          "Focused on athletic injuries in professional and amateur athletes.",
+          `Focused on athletic injury prevention and treatment, developing strong analytical 
+                and problem-solving skills.`,
         ],
       },
     ],
@@ -91,6 +120,16 @@ const resumeDto = [
   {
     heading: "Background",
     data: [
+      {
+        title: "Tactical Firearms Instructor & Range Safety Officer",
+        location: "Top Gun Range | Houston, TX",
+        date: "January 2016 – August 2016",
+        info: [
+          `Trained individuals in tactical applications and safety protocols, enhancing 
+                  communication and leadership skills.`,
+        ],
+      },
+
       {
         title: "PhD Research Assistant",
         location: "University of Houston | Houston, TX",
@@ -105,7 +144,8 @@ const resumeDto = [
         location: "Israel Defense Forces | Israel",
         date: "October 2000 – December 2005",
         info: [
-          "Enhanced situational awareness and strategic planning through paratrooper and anti-terror roles.",
+          `Served as a Paratrooper, providing close protection in high-risk environments, 
+              honing adaptability and decision-making under pressure.`,
         ],
       },
     ],
