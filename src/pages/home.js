@@ -5,7 +5,6 @@ import { Resume } from "@/components/resume";
 import { Portfolio } from "@/components/portfolio";
 import { BottomSheet, State } from "@/components/bottom-sheet";
 import { Animate, fadeIn } from "@/styles";
-// import { randomPause } from "@/Utils";
 
 const getRightStyle = ({ settings: { profile } }) => {
   switch (profile) {
@@ -113,11 +112,11 @@ export const Home = {
         { style: getRightStyle(mdl) },
         m(
           "p.w3-center",
-          "FullStack Software Developer with extensive experience in web development, project management, and team leadership.",
+          `Results-driven Senior Software Engineer with over 8 years of experience in frontend development, specializing in ReactJS and modern JavaScript frameworks. Proven expertise in architecting scalable web applications, optimizing UI performance, and leading design system implementations.`,
         ),
         m(
           "p.w3-center",
-          "Skilled in enhancing application performance, streamlining workflows, and improving user experience.",
+          `Adept at collaborating with cross-functional teams, mentoring junior developers, and integrating RESTful APIs and GraphQL. Passionate about delivering high-fidelity, user-centric solutions with a focus on innovation and excellence.`,
         ),
         m(
           rowWrapper,

@@ -45,13 +45,13 @@ const resumeDto = [
         info: [
           `Lead developer for the company’s primary in-house application, utilized by business 
             analysts and Tech Directors for client configurations, transitioning a legacy .NET 
-            application to a modern ReactJS-style (AureliaJS) frontend architecture.`,
-          `Architected and maintained scalable frontend solutions, enhancing performance 
+            application to a modern React style frontend architecture.`,
+          `Architected and maintained scalable using React, Vue, NativeScript-vue frontend solutions, enhancing performance 
           through efficient rendering strategies and modern caching techniques.`,
-          `Designed and implemented a reusable component library to ensure UI consistency 
+          `Designed and implemented a reusable component library for vue and NativeScript-vue to ensure UI consistency 
           across applications, collaborating with designers to translate Figma mockups into 
           pixel-perfect interfaces.`,
-          `Optimized build processes using Webpack and Babel, and enhanced CI/CD 
+          `Optimized build processes using vite, Webpack and Babel, and enhanced CI/CD 
           pipelines with GitHub Actions to improve developer efficiency and onboarding.`,
           `Integrated RESTful APIs and C# .NET Entity Framework request handlers, ensuring 
           seamless data consumption and performance.`,
