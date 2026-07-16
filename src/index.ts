@@ -5,7 +5,15 @@ import "./styles/index.css";
 
 const root = document.body;
 let winW = window.innerWidth;
-const savedTheme = localStorage.getItem("theme");
+const getSavedTheme = () => {
+  try {
+    return localStorage.getItem("theme") || sessionStorage.getItem("theme");
+  } catch (_error) {
+    return null;
+  }
+};
+
+const savedTheme = getSavedTheme();
 
 model.settings.theme = savedTheme === "creative" ? "creative" : "executive";
 document.documentElement.dataset.theme = model.settings.theme;

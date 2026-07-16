@@ -20,7 +20,7 @@ const getProfile = (w) => {
 const isFullScreen = state => {
   const profile = getProfile(window.innerWidth)
   switch (profile) {
-    case 'phone': return state.sheetHeight >= 80 ? 'fullscreen' : 'not-fullscreen'
+    case 'phone': return state.sheetHeight >= 75 ? 'fullscreen' : 'not-fullscreen'
     case 'tablet': return state.sheetHeight >= 90 ? 'fullscreen' : 'not-fullscreen'
     case 'desktop': return state.sheetHeight >= 90 ? 'fullscreen' : 'not-fullscreen'
   }
@@ -50,6 +50,7 @@ const onDragMove = state => (e) => {
 }
 
 const onDragEnd = state => (e) => {
+  if (state.dragPosition === undefined) return
   e.preventDefault()
   state.dragPosition = undefined
   state.selectable = true
@@ -83,8 +84,8 @@ const BottomSheet = {
         style: { bottom: isFullScreen(state) ? 0 : '3dvh' },
       },
       m('.overlay'),
-      m(`#contents.${isFullScreen(state)} ${isSelectable(state)}`,
-        { style: { height: getHeight(state), overflow: 'scroll' } },
+      m(`#contents.${isFullScreen(state)}.${isSelectable(state)}`,
+        { style: { height: getHeight(state) } },
         m(`header.controls.${getCursor(state)}`, { ontouchstart: onDragStart(state), onmousedown: onDragStart(state) },
           m('.draggable-area',
             m('.draggable-thumb',)),

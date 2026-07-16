@@ -111,16 +111,16 @@ export const Home = {
         m("h2", "I turn complex product workflows into clear, durable interfaces."),
         m(
           "p.hero-lede",
-          `Senior frontend engineer with 8+ years building React, Vue, Mithril, NativeScript, and API-driven product surfaces for teams that need speed without losing craft.`,
+          `Frontend software engineer with 9+ years building TypeScript, Vue, NativeScript-Vue, AureliaJS, and API-driven product surfaces for teams that need speed without losing craft.`,
         ),
         m(
           "p.hero-support",
-          `I specialize in legacy modernization, reusable component systems, performance-minded UI, and pragmatic collaboration across design, product, and backend teams.`,
+          `I specialize in real-time interfaces, offline-capable web apps, reusable component systems, WCAG accessibility, and pragmatic integration across Node.js, REST, C#/.NET, and SQL-backed workflows.`,
         ),
         m(".cred-grid", [
-          m(".cred-card", [m("strong", "8+ yrs"), m("span", "Production frontend delivery")]),
-          m(".cred-card", [m("strong", "Modernized"), m("span", "Legacy .NET workflows into modern UI")]),
-          m(".cred-card", [m("strong", "Systems"), m("span", "Reusable components, APIs, performance")]),
+          m(".cred-card", [m("strong", "9+ yrs"), m("span", "Enterprise frontend delivery")]),
+          m(".cred-card", [m("strong", "Real-time"), m("span", "WebSockets, streaming UI, offline support")]),
+          m(".cred-card", [m("strong", "Systems"), m("span", "Vue, TypeScript, APIs, accessibility")]),
         ]),
         m(".primary-actions", [
           m(SheetBtn, {
@@ -135,15 +135,14 @@ export const Home = {
             action: () => (portfolioState.hideSheet = false),
           }),
         ]),
-
-        m(BottomSheet, {
-          state: resumeState,
-          render: (state) => m(Resume, { mdl, state }),
-        }),
-        m(BottomSheet, {
-          state: portfolioState,
-          render: () => m(Portfolio, { mdl }),
-        }),
       ),
+      m(BottomSheet, {
+        state: resumeState,
+        render: (state) => m(Resume, { mdl, state }),
+      }),
+      m(BottomSheet, {
+        state: portfolioState,
+        render: () => m(Portfolio, { mdl }),
+      }),
     ),
 };

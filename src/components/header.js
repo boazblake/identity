@@ -1,10 +1,18 @@
 import m from "mithril";
 
+const saveTheme = (theme) => {
+  try {
+    localStorage.setItem("theme", theme);
+  } catch (_error) {
+    sessionStorage.setItem("theme", theme);
+  }
+};
+
 const toggleTheme = (mdl) => {
   mdl.settings.theme =
     mdl.settings.theme === "executive" ? "creative" : "executive";
   document.documentElement.dataset.theme = mdl.settings.theme;
-  localStorage.setItem("theme", mdl.settings.theme);
+  saveTheme(mdl.settings.theme);
 };
 
 export const Header = {

@@ -83,7 +83,10 @@ const ProjectCard = {
         "aria-label": `Open ${project.name}`,
       },
       m("span.work-number", String(index + 1).padStart(2, "0")),
-      m(".work-image-frame", m("img", { src: project.image, alt: "", loading: "lazy" })),
+      m(
+        ".work-image-frame",
+        m("img", { src: project.image, alt: "", loading: "lazy" }),
+      ),
       m(".work-card-copy", [
         m("p.work-meta", project.meta || "Selected work"),
         m("h2", project.name),
@@ -104,7 +107,10 @@ const Portfolio = () => {
     oninit: () =>
       getRepos().then(
         (repos) => {
-          state.projects = [...staticProjects, ...repos.filter(isPortfolioRepo).map(toProject)];
+          state.projects = [
+            ...staticProjects,
+            ...repos.filter(isPortfolioRepo).map(toProject),
+          ];
           state.status = "loaded";
         },
         (errors) => {
@@ -116,21 +122,21 @@ const Portfolio = () => {
       m("section.work-section", [
         m(".work-header", [
           m("p.work-kicker", "Selected work"),
-          m("h1", "Projects with a live surface."),
-          m(
-            "p",
-            "A focused index of shipped websites and interface work. Each item opens in a new tab so the work can speak for itself.",
-          ),
+          m("h1", "Github Projects and Experiments."),
+          m("p", "A selection of links to work. Each item opens in a new tab."),
         ]),
         state.status === "failed" &&
           m(".work-notice", [
             m("strong", "GitHub projects could not be loaded."),
             m("span", "Showing available featured work instead."),
           ]),
-        state.status === "loading" && m(".work-notice", "Loading live project index…"),
+        state.status === "loading" &&
+          m(".work-notice", "Loading live project index…"),
         m(
           ".work-grid",
-          state.projects.map((project, index) => m(ProjectCard, { project, index })),
+          state.projects.map((project, index) =>
+            m(ProjectCard, { project, index }),
+          ),
         ),
       ]),
   };

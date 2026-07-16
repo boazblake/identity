@@ -15,16 +15,38 @@ const triggerDownload = () => (e) => {
 
 const resumeDto = [
   {
-    heading: "Summary",
+    heading: "Professional Summary",
     data: [
       {
         info: [
-          `Results-driven Senior Software Engineer with over 8 years of experience in frontend
-          development, specializing in ReactJS and modern JavaScript frameworks. Proven expertise 
-          in architecting scalable web applications, optimizing UI performance, and leading design 
-          system implementations. Adept at collaborating with cross-functional teams, mentoring 
-          junior developers, and integrating RESTful APIs and GraphQL. Passionate about delivering 
-          high-fidelity, user-centric solutions with a focus on innovation and excellence.`,
+          `Frontend software engineer with 9+ years of professional experience building enterprise web and cross-platform mobile applications. Strong in TypeScript, Vue, NativeScript-Vue, AureliaJS, Tailwind CSS, Vite, responsive UI, data visualization, PWA and offline behavior, WCAG accessibility, automated testing, and WebSocket-driven real-time interfaces. Delivers reusable component systems, production performance improvements, and end-to-end features spanning Node.js services, REST APIs, C#/.NET integration, and SQL.`,
+        ],
+      },
+    ],
+  },
+  {
+    heading: "Technical Skills",
+    data: [
+      {
+        title: "Core",
+        info: ["TypeScript, JavaScript (ES6+), HTML5, CSS3, Node.js, C#, SQL"],
+      },
+      {
+        title: "Frontend",
+        info: [
+          "Vue.js, NativeScript-Vue, AureliaJS, Tailwind CSS, Sass, LESS, responsive/mobile-first UI, reusable component systems, Figma",
+        ],
+      },
+      {
+        title: "Real-Time & Data",
+        info: [
+          "WebSockets, streaming UI, event-driven state, charting and data-visualization libraries, REST, GraphQL, PWA, service workers, offline support",
+        ],
+      },
+      {
+        title: "Quality & Delivery",
+        info: [
+          "Vite, Webpack, ESBuild, Babel, automated unit/integration/end-to-end testing, WCAG accessibility, cross-browser compatibility, GitHub Actions, Jenkins, Git",
         ],
       },
     ],
@@ -33,44 +55,27 @@ const resumeDto = [
     heading: "Professional Experience",
     data: [
       {
-        title: "Sr Front End Developer",
-        location: "Empyrean Benefits Solution | Houston, TX",
-        date: "April 2019 – Present",
+        title: "Senior Front-End Web Systems Developer",
+        location: "Empyrean Benefit Solutions | Houston, TX",
+        date: "Apr 2019 – Present",
         info: [
-          `Lead developer for the company’s primary in-house application, utilized by business 
-            analysts and Tech Directors for client configurations, transitioning a legacy .NET 
-            application to a modern React style frontend architecture.`,
-          `Architected and maintained scalable using React, Vue, NativeScript-vue frontend solutions, enhancing performance 
-          through efficient rendering strategies and modern caching techniques.`,
-          `Designed and implemented a reusable component library for vue and NativeScript-vue to ensure UI consistency 
-          across applications, collaborating with designers to translate Figma mockups into 
-          pixel-perfect interfaces.`,
-          `Optimized build processes using vite, Webpack and Babel, and enhanced CI/CD 
-          pipelines with GitHub Actions to improve developer efficiency and onboarding.`,
-          `Integrated RESTful APIs and C# .NET Entity Framework request handlers, ensuring 
-          seamless data consumption and performance.`,
-          `Mentored junior developers and conducted code reviews, establishing best 
-          practices for frontend development and reducing operation times by 20% through 
-          UX/UI enhancements.`,
-          `Delivered a delayed configuration feature ahead of schedule by independently 
-          architecting infrastructure, including SQL table creation, API development, and a 
-          complex frontend interface.`,
+          "Lead frontend development of enterprise web and mobile products used by business analysts, technical directors, and client-facing teams, converting complex operational workflows into responsive, maintainable interfaces.",
+          "Architect and maintain reusable TypeScript and Vue component systems using Tailwind CSS, Sass, and Figma specifications, with WCAG-aligned accessibility, mobile-first behavior, and cross-browser consistency.",
+          "Build data-rich interfaces and visualizations with charting libraries, improving readability and rendering performance for time-sensitive user workflows.",
+          "Architected a TypeScript conversational assistant for Vue web and NativeScript mobile clients, using WebSockets for streamed text and audio, reconnection, session resume, and synchronized client-server state.",
+          "Implemented PWA and offline-capable behavior with service workers, caching, resilient network-state handling, and mobile-focused interaction patterns.",
+          "Develop TypeScript and Node.js services, integrate REST and GraphQL APIs, and contribute to C#/.NET Entity Framework handlers and SQL-backed workflows.",
+          "Delivered an end-to-end delayed-configuration capability ahead of schedule by owning SQL table design, API development, and a complex frontend workflow.",
+          "Reduced operational processing time by 20% through UX redesign; strengthened releases with automated frontend tests, Vite/Webpack tooling, GitHub Actions, Jenkins, code reviews, and mentoring.",
         ],
       },
       {
-        title: "Front End Developer",
-        location: "Empyrean Benefits Solution | Houston, TX",
-        date: "August 2016 – April 2019",
+        title: "Front-End Web Developer",
+        location: "Empyrean Benefit Solutions | Houston, TX",
+        date: "Aug 2016 – Apr 2019",
         info: [
-          `Developed responsive web applications across multiple frameworks (ReactJS, Vue, 
-                AureliaJS, NativeScript), including the company’s first mobile app (EmpyreanGO) 
-                built with Vue and NativeScript.`,
-          `Created an employee onboarding application in AureliaJS, integrating HR and 
-                customer service access with high design fidelity.`,
-          `Optimized CSS using SASS and styled-components, improving load times and 
-                maintainability of UI components.`,
-          `Collaborated with backend teams to integrate APIs, enhancing application 
-                functionality and user experience. `,
+          "Developed responsive applications with Vue, AureliaJS, and NativeScript, including EmpyreanGO, the company’s first cross-platform mobile application.",
+          "Built an employee onboarding application connecting HR and customer-service workflows, integrated backend APIs, and created maintainable Sass-based styling patterns.",
         ],
       },
     ],
@@ -81,66 +86,20 @@ const resumeDto = [
       {
         title: "Front End Web Development",
         location: "The Iron Yard | Houston, TX",
-        date: "February 2016 – April 2016",
-        info: [
-          `Completed an intensive 3-month course focusing on HTML, JavaScript, CSS, and 
-          SOLID principles of OOP.`,
-          `Built a responsive Event Organizer application using ReactJS and MongoDB, 
-           emphasizing performance optimization and modern frontend practices.`,
-          `Supplemented learning with Harvard CS50 (David J. Malan), Functional 
-           Programming (Brian Lonsdorf), and Category Theory (Bartosz Milewski) courses.`,
-        ],
+        date: "2016",
+        info: ["Front-End Web Development"],
       },
       {
-        title: "PhD in Human Space Exploration (Incomplete)",
+        title: "Doctoral Studies",
         location: "University of Houston | Houston, TX",
-        date: "September 2011 – May 2014",
-        info: [
-          `Conducted research on gravitational forces and epigenetic inheritance under NASA 
-            HRP Grant #NNX12AF04G.`,
-        ],
+        date: "2011 – 2014",
+        info: ["Statistics instruction and NASA-funded research."],
       },
       {
-        title: "Bachelor of Science in Sports Medicine | cum laude",
+        title: "B.S. Sports Medicine | cum laude",
         location: "James Madison University | Harrisonburg, VA",
-        date: "August 2007 – May 2010",
-        info: [
-          `Focused on athletic injury prevention and treatment, developing strong analytical 
-                and problem-solving skills.`,
-        ],
-      },
-    ],
-  },
-  {
-    heading: "Background",
-    data: [
-      {
-        title: "Tactical Firearms Instructor & Range Safety Officer",
-        location: "Top Gun Range | Houston, TX",
-        date: "January 2016 – August 2016",
-        info: [
-          `Trained individuals in tactical applications and safety protocols, enhancing 
-                  communication and leadership skills.`,
-        ],
-      },
-
-      {
-        title: "PhD Research Assistant",
-        location: "University of Houston | Houston, TX",
-        date: "September 2011 – May 2014",
-        info: [
-          "Taught undergraduate classes on biomechanics, statistics, and health/fitness.",
-          "Researched spaceflight's impact on the nervous system and environmental stressors on immune function.",
-        ],
-      },
-      {
-        title: "Anti-Terrorist Officer/Bodyguard",
-        location: "Israel Defense Forces | Israel",
-        date: "October 2000 – December 2005",
-        info: [
-          `Served as a Paratrooper, providing close protection in high-risk environments, 
-              honing adaptability and decision-making under pressure.`,
-        ],
+        date: "2010",
+        info: ["Bachelor of Science in Sports Medicine, cum laude."],
       },
     ],
   },
