@@ -1,184 +1,138 @@
 import m from "mithril";
 
-const hasRepos = () => {
-  let age = parseInt(localStorage.getItem("repos-date"));
-  let now = Date.now();
+const CACHE_TTL = 60 * 60 * 1000;
+const REPOS_KEY = "repos";
+const REPOS_DATE_KEY = "repos-date";
 
-  return (now - age) / 1000 >= 3600
-    ? (localStorage.clear("repos"), null)
-    : localStorage.getItem("repos");
+const staticProjects = [
+  {
+    name: "bonhamacres.org",
+    url: "https://bonhamacres.org",
+    image: "images/baca.webp",
+    summary:
+      "Neighborhood civic association website maintained as webmaster, built with Mithril and Express.",
+    meta: "Civic web · Mithril · Express",
+  },
+];
+
+const readCachedRepos = () => {
+  const cachedAt = Number(localStorage.getItem(REPOS_DATE_KEY));
+  const cachedRepos = localStorage.getItem(REPOS_KEY);
+
+  if (!cachedAt || !cachedRepos || Date.now() - cachedAt > CACHE_TTL) {
+    localStorage.removeItem(REPOS_KEY);
+    localStorage.removeItem(REPOS_DATE_KEY);
+    return null;
+  }
+
+  return JSON.parse(cachedRepos);
 };
 
-const fetchRepos = (mdl) => {
-  mdl.portfolio.reposList = JSON.parse(hasRepos());
-  return mdl.portfolio.reposList;
-};
 const saveRepos = (repos) => {
-  localStorage.setItem("repos-date", JSON.stringify(Date.now()));
-  localStorage.setItem("repos", JSON.stringify(repos));
+  localStorage.setItem(REPOS_DATE_KEY, `${Date.now()}`);
+  localStorage.setItem(REPOS_KEY, JSON.stringify(repos));
   return repos;
 };
 
-const hasRepo = (name) => localStorage.getItem(name);
-const fetchRepo = (name) => JSON.parse(hasRepo(name));
-const saveRepo = (name) => (repo) => {
-  localStorage.setItem(name, JSON.stringify(repo));
-  return repo;
+const parseRepoDescription = (description = "") => {
+  const [summary, image, meta] = (description || "")
+    .split("~")
+    .map((value) => value && value.trim());
+  return { summary, image, meta };
 };
 
-const handler = (entry) =>
-  entry.forEach(
-    (change) => (change.target.style.opacity = change.isIntersecting ? 1 : 0),
-  );
+const toProject = (repo) => {
+  const { summary, image, meta } = parseRepoDescription(repo.description);
 
-const opacityObs = new IntersectionObserver(handler);
+  return {
+    name: repo.name,
+    url: repo.homepage,
+    image,
+    summary,
+    meta: meta || [repo.language, "GitHub Pages"].filter(Boolean).join(" · "),
+  };
+};
 
-const getRepos = (mdl) =>
-  m
+const isPortfolioRepo = (repo) => {
+  const { image } = parseRepoDescription(repo.description);
+  return repo.homepage && repo.homepage.includes("boazblake") && image;
+};
+
+const getRepos = () => {
+  const cachedRepos = readCachedRepos();
+  if (cachedRepos) return Promise.resolve(cachedRepos);
+
+  return m
     .request({
-      url: "https://api.github.com/users/boazblake/repos?sort=asc&per_page=1000000",
+      url: "https://api.github.com/users/boazblake/repos?sort=updated&per_page=100",
       headers: {
         Accept: "application/vnd.github.v3+json",
       },
     })
     .then(saveRepos);
+};
 
-const getRepo = (state) =>
-  hasRepo(state.name)
-    ? Promise.resolve(fetchRepo(state.name))
-    : m
-      .request({
-        url: `https://api.github.com/repos/boazblake/${state.name}`,
-      })
-      .then(saveRepo(state.name));
-
-const Repo = () => {
-  const state = {
-    name: "",
-    status: "loading",
-  };
-  return {
-    oninit: ({ attrs: { mdl, name, url } }) => {
-      state.name = name;
-      getRepo(state).then(
-        ({ description, homepage }) => {
-          state.errors = null;
-          state.info = description && description.split("~")[0];
-          state.src = description && description.split("~")[1];
-          state.status = "loaded";
-          mdl.portfolio.repos[name] = { name, description, homepage };
-          hasRepo(state.name) && m.redraw();
-        },
-        (errors) => {
-          state.status = "failed";
-          state.errors = errors;
-        },
-      );
-    },
-    view: ({ attrs: { url, name, idx } }) => {
-      return (
-        state.status == "loading" && "Repo Loading...",
-        state.status == "failed" && "Error",
-        state.status == "loaded" &&
-        m(
-          "a.w3-col s12 m6 l4",
-          {
-            pointerEvents: "auto",
-            zIndex: 999,
-            tabIndex: idx + 1,
-            href: url, //,`https://boazblake.github.io/${state.name}`,
-            target: "_blank",
-            rel: "noopener noreferrer",
-            oncreate: ({ dom }) => {
-              state.status == "loaded" && opacityObs.observe(dom);
-            },
-            style: { opacity: 1 },
-          },
-          m(
-            ".w3-cell.w3-padding-small",
-            m(
-              "h2",
-              {
-                onclick: () => (window.location.href = url),
-              },
-              state.name,
-            ),
-            m("img", { style: { maxWidth: "80%" }, src: state.src }),
-            m(".info", state.info),
-          ),
-        )
-      );
-    },
-  };
+const ProjectCard = {
+  view: ({ attrs: { project, index } }) =>
+    m(
+      "a.work-card",
+      {
+        href: project.url,
+        target: "_blank",
+        rel: "noopener noreferrer",
+        "aria-label": `Open ${project.name}`,
+      },
+      m("span.work-number", String(index + 1).padStart(2, "0")),
+      m(".work-image-frame", m("img", { src: project.image, alt: "", loading: "lazy" })),
+      m(".work-card-copy", [
+        m("p.work-meta", project.meta || "Selected work"),
+        m("h2", project.name),
+        m("p", project.summary),
+        m("span.work-link", "Visit project →"),
+      ]),
+    ),
 };
 
 const Portfolio = () => {
   const state = {
     status: "loading",
-    errors: {},
+    projects: staticProjects,
+    errors: null,
   };
 
   return {
-    oninit: ({ attrs: { mdl } }) =>
-      getRepos(mdl)
-        .then((repos) =>
-          repos
-            .filter((repo) => {
-              return (
-                repo.homepage &&
-                repo.homepage.includes("boazblake") &&
-                repo.description &&
-                repo.description.split("~")[1]
-              );
-            })
-            .map((repo) => ({ url: repo.homepage, name: repo.name })),
-        )
-        .then(
-          (repos) => {
-            mdl.portfolio.reposList = repos;
-            state.status = "loaded";
-            hasRepos() && m.redraw();
-          },
-          (errors) => {
-            state.status = "failed";
-            state.errors = errors;
-          },
-        ),
-    view: ({ attrs: { mdl } }) =>
-      m(
-        ".w3-container",
-        m("h1", "Projects"),
-        m("h2.w3-center", "Click through to visit these projects"),
-        state.status == "failed" && "Error fetching Repos ...",
-        state.status == "loading" && m(".w3-panel", "Loading Repos ..."),
-        state.status == "loaded" &&
-        m(
-          ".w3-row.w3-grid.overflow",
-          m(
-            "a.w3-col s12 m6 l4",
-            {
-              href: `https://bonhamacres.org`,
-              target: "_blank",
-              tabIndex: 0,
-              onclick: () =>
-                (window.location.href = `https://bonhamacres.org`),
-            },
-            m("h2", "bonhamacres.org"),
-
-            m("img", {
-              style: { maxWidth: "80%", height: "auto", zIndex: 999 },
-              src: "images/baca.webp",
-            }),
-            m(
-              "p",
-              "Neighborhood Civic Association website that I am webmaster of. Created using mithriljs and expressjs",
-            ),
-          ),
-          mdl.portfolio.reposList.map(({ url, name }, idx) =>
-            m(Repo, { url, name, mdl, idx }),
-          ),
-        ),
+    oninit: () =>
+      getRepos().then(
+        (repos) => {
+          state.projects = [...staticProjects, ...repos.filter(isPortfolioRepo).map(toProject)];
+          state.status = "loaded";
+        },
+        (errors) => {
+          state.status = "failed";
+          state.errors = errors;
+        },
       ),
+    view: () =>
+      m("section.work-section", [
+        m(".work-header", [
+          m("p.work-kicker", "Selected work"),
+          m("h1", "Projects with a live surface."),
+          m(
+            "p",
+            "A focused index of shipped websites and interface work. Each item opens in a new tab so the work can speak for itself.",
+          ),
+        ]),
+        state.status === "failed" &&
+          m(".work-notice", [
+            m("strong", "GitHub projects could not be loaded."),
+            m("span", "Showing available featured work instead."),
+          ]),
+        state.status === "loading" && m(".work-notice", "Loading live project index…"),
+        m(
+          ".work-grid",
+          state.projects.map((project, index) => m(ProjectCard, { project, index })),
+        ),
+      ]),
   };
 };
 
