@@ -9,9 +9,9 @@ import { Animate, fadeIn } from "@/styles";
 const getRightStyle = ({ settings: { profile } }) => {
   switch (profile) {
     case "desktop":
-      return { width: "100%" };
+      return { width: "100%", maxWidth:"60%", justifyContent: "center"};
     case "phone":
-      return { height: "200%", width: "100%", maxWidth:"60%"};
+      return { height: "200%", width: "100%", justifyContent: "center"};
     case "tablet":
       return { height: "100%", justifyContent: "center", width: "49.99999%" };
   }
