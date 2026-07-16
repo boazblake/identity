@@ -6,11 +6,11 @@
 }
 
 :root {
-  --background: #fff;
-  --foreground: #000;
-  --divider: #dcdcdc;
-  --overlay: #888;
-  --box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  --background: var(--surface-strong);
+  --foreground: var(--text);
+  --divider: var(--ring);
+  --overlay: #000;
+  --box-shadow: var(--shadow);
 }
 
 #bottomsheet > a,
@@ -89,7 +89,8 @@ button {
   bottom: 0;
   z-index: -1;
   background: var(--overlay);
-  opacity: 0.5;
+  opacity: 0.42;
+  backdrop-filter: blur(5px);
 }
 
 .sheet #contents {
@@ -97,7 +98,8 @@ button {
   flex-direction: column;
 
   overflow-y: auto;
-  border-radius: 1rem 1rem 0 0;
+  border: 1px solid var(--ring);
+  border-radius: 1.5rem 1.5rem 0 0;
 
   background: var(--background);
 
@@ -107,7 +109,7 @@ button {
   transition: var(--default-transitions);
   transform: translateY(0);
 
-  max-width: 90%;
+  max-width: min(1120px, 94%);
   max-height: 100vh;
   height: 30vh;
 
@@ -153,7 +155,7 @@ button {
 .sheet .draggable-thumb {
   width: inherit;
   height: 0.5rem;
-  background: var(--divider);
+  background: var(--accent);
   border-radius: 0.125rem;
   transition: width 0.4s ease-in;
 }
@@ -162,6 +164,7 @@ button {
   border: none;
   font-size: 2rem;
   transform: translate(-25px, 5px);
+  color: var(--text);
 }
 
 .sheet .body {

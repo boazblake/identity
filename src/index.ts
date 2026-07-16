@@ -1,9 +1,14 @@
 import m from "mithril";
 import routes from "./routes.js";
 import model from "./model.js";
+import "./styles/index.css";
 
 const root = document.body;
 let winW = window.innerWidth;
+const savedTheme = localStorage.getItem("theme");
+
+model.settings.theme = savedTheme === "creative" ? "creative" : "executive";
+document.documentElement.dataset.theme = model.settings.theme;
 
 // set display profiles
 const getProfile = (w: number) => {

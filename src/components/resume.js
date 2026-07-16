@@ -5,17 +5,11 @@ const link = ({ href, title }) =>
 
 const triggerDownload = () => (e) => {
   e.preventDefault();
-  var link = document.createElement("a");
-  link.href = "/identity/files/BOAZ_RESUME.pdf";
+  const link = document.createElement("a");
+  link.href = "files/BOAZ_RESUME.pdf";
   link.setAttribute("download", "BOAZ_BLAKE_FRONTEND_DEVELOPER_RESUME.pdf");
-
-  // Append link to body
   document.body.appendChild(link);
-
-  // Trigger click
   link.click();
-
-  // Remove link from body
   document.body.removeChild(link);
 };
 
@@ -200,7 +194,7 @@ const Resume = {
                   { colspan: 5 },
                   m(
                     "table",
-                    data.info.map((info) => m("tr", m.trust(info))),
+                    data.info.map((info) => m("tr", m("td", info))),
                   ),
                 ),
               ),

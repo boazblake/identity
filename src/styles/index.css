@@ -101,12 +101,46 @@
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
+  --page-bg: #fbfaf6;
+  --surface: #fbfaf6;
+  --surface-strong: #ffffff;
+  --text: #111111;
+  --muted: #5f625f;
+  --accent: #b21f24;
+  --accent-strong: #111111;
+  --ring: #111111;
+  --focus: #b21f24;
+  --shadow: none;
+  --shadow-soft: none;
+  --radius-xl: 0;
+  --radius-lg: 0;
+  --radius-md: 0;
+  --space-page: clamp(1rem, 4vw, 3.5rem);
+}
+
+:root[data-theme="creative"] {
+  --page-bg: #111111;
+  --surface: #111111;
+  --surface-strong: #1a1a1a;
+  --text: #fbfaf6;
+  --muted: #b8b8b0;
+  --accent: #ff4d4d;
+  --accent-strong: #fbfaf6;
+  --ring: #fbfaf6;
+  --focus: #ff4d4d;
+  --shadow: none;
+  --shadow-soft: none;
 }
 
 * {
   box-sizing: border-box;
-  font-family: Montserrat;
+  font-family: Montserrat, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   touch-action: manipulation;
+}
+
+*:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 4px;
 }
 
 html,
@@ -114,12 +148,25 @@ body {
   margin: 0;
   height: 100dvh;
   overflow: hidden;
-  font-family: "Arial", sans-serif; /* Or any other modern font */
+  background: var(--page-bg);
+  background-size: auto;
+  color: var(--text);
+  font-family: Montserrat, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.5;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+:root[data-theme="creative"] body {
+  background:
+    var(--page-bg);
+  background-size: auto;
 }
 
 a {
   text-decoration: none;
   cursor: pointer;
+  color: inherit;
 }
 
 .overflow {
@@ -143,7 +190,8 @@ a {
 
 #app {
   height: 100dvh;
-  padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+  overflow: hidden;
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 #header {
@@ -174,12 +222,12 @@ a {
 .typewriter {
   overflow: hidden; /* Ensures the content is not revealed until the animation */
   white-space: nowrap; /* Keeps the content on a single line */
-  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  margin: 0; /* Gives that scrolling effect as the typing happens */
   letter-spacing: 0.1em; /* Adjust as needed */
 }
 
 .type-writer {
-  border-right: 0.15em solid var(--orange); /* The typwriter cursor */
+  border-right: 0.12em solid var(--accent); /* The typwriter cursor */
   animation:
     typing 3.5s steps(40, end),
     blink-caret 0.75s step-end infinite;
@@ -202,7 +250,7 @@ a {
     border-color: transparent;
   }
   50% {
-    border-color: var(--orange);
+    border-color: var(--accent);
   }
 }
 
@@ -246,11 +294,12 @@ a {
 }
 
 button {
-  background-color: #007bff; /* Accent color */
-  color: var(--white);
-  padding: 10px 20px;
-  border-radius: 25px;
-  border: none;
+  background-color: var(--accent);
+  color: #ffffff;
+  min-height: 44px;
+  padding: 0.75rem 1.15rem;
+  border-radius: 0;
+  border: 1px solid var(--ring);
   cursor: pointer;
   transition:
     background-color 0.3s ease,
@@ -260,9 +309,418 @@ button {
 }
 
 button:hover {
-  background-color: #0056b3; /* Darker hover effect */
-  transform: scale(1.05); /* Slight zoom on hover */
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05); /* Spicy shadow effect */
+  background-color: var(--accent-strong);
+  color: var(--page-bg);
+  transform: none;
+  box-shadow: none;
+}
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  height: clamp(72px, 11dvh, 92px);
+  min-height: 0;
+  border-bottom: 1px solid var(--ring);
+  padding: clamp(0.75rem, 2dvh, 1rem) var(--space-page) clamp(0.75rem, 2dvh, 1rem);
+}
+
+.brand {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.eyebrow,
+.kicker {
+  color: var(--accent);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.brand h1 {
+  font-size: clamp(1.05rem, 3.2vw, 1.65rem);
+  font-family: Montserrat, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  margin: 0;
+  max-width: 420px;
+  text-transform: none;
+}
+
+.theme-toggle {
+  background: var(--surface);
+  border: 1px solid var(--ring);
+  color: var(--text);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  min-width: 150px;
+  text-transform: uppercase;
+}
+
+.portfolio-home {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.9fr) minmax(320px, 1.1fr);
+  gap: 0;
+  height: calc(100dvh - clamp(72px, 11dvh, 92px) - env(safe-area-inset-bottom));
+  min-height: 0;
+  padding: 0 var(--space-page);
+}
+
+.hero-visual,
+.hero-copy {
+  position: relative;
+  min-height: 0;
+  height: 100%;
+}
+
+.hero-visual {
+  align-items: center;
+  background: var(--surface);
+  border: 0;
+  border-right: 1px solid var(--ring);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  isolation: isolate;
+  padding: clamp(0.75rem, 2.5vw, 2rem) clamp(1rem, 4vw, 3rem) clamp(0.75rem, 2.5vw, 2rem) 0;
+}
+
+.hero-copy {
+  align-self: center;
+  background: var(--surface);
+  border: 0;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(0.65rem, 1.6dvh, 1.1rem);
+  overflow: hidden;
+  padding: clamp(1rem, 3.5vw, 3rem) 0 clamp(1rem, 3.5vw, 3rem) clamp(1rem, 4vw, 3rem);
+}
+
+.hero-copy h2 {
+  font-size: clamp(2.1rem, min(5.7vw, 8.4dvh), 4.8rem);
+  font-family: Montserrat, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.075em;
+  line-height: 0.96;
+  margin: 0;
+  max-width: 13ch;
+  text-transform: none;
+}
+
+.hero-lede,
+.hero-support {
+  color: var(--muted);
+  font-size: clamp(0.92rem, 1.45vw, 1.08rem);
+  line-height: 1.55;
+  margin: 0;
+  max-width: 62ch;
+}
+
+.portrait-shell {
+  background: var(--surface-strong);
+  border: 1px solid var(--ring);
+  border-radius: 0;
+  padding: clamp(0.8rem, 2vw, 1.25rem);
+  position: relative;
+  z-index: 1;
+}
+
+#me.show {
+  border: 1px solid var(--ring);
+  border-radius: 1px;
+  display: block;
+  height: min(42dvh, 420px);
+  object-fit: cover;
+  width: min(58vw, 400px);
+}
+
+:root[data-theme="creative"] .portrait-shell {
+  box-shadow: var(--shadow);
+}
+
+.contact-strip,
+.primary-actions,
+.cred-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.contact-strip {
+  justify-content: center;
+  margin-top: clamp(0.75rem, 2dvh, 1.25rem);
+  position: relative;
+  z-index: 1;
+}
+
+.social-link,
+.contact-action,
+.action-button {
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+}
+
+.social-link,
+.contact-action {
+  background: var(--surface-strong);
+  border: 1px solid var(--ring);
+  border-radius: 0;
+  height: clamp(46px, 6dvh, 54px);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  width: clamp(46px, 6dvh, 54px);
+}
+
+.social-link:hover,
+.contact-action:hover {
+  box-shadow: none;
+  transform: none;
+  background: var(--text);
+}
+
+.social-link:hover img,
+.contact-action:hover img {
+  filter: invert(1);
+}
+
+.social-link img,
+.contact-action img {
+  height: 1.55rem;
+  transition: transform 0.18s ease;
+  width: 1.55rem;
+}
+
+.cred-grid {
+  margin: 0.5rem 0;
+}
+
+.cred-card {
+  background: var(--surface-strong);
+  border: 1px solid var(--ring);
+  border-radius: var(--radius-md);
+  display: grid;
+  gap: 0.2rem;
+  min-width: min(135px, 100%);
+  box-shadow: var(--shadow-soft);
+  padding: clamp(0.7rem, 1.5dvh, 0.95rem);
+}
+
+.cred-card strong {
+  color: var(--accent-strong);
+  font-size: 0.98rem;
+  font-family: Montserrat, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-weight: 800;
+  text-transform: none;
+}
+
+:root[data-theme="creative"] .cred-card strong {
+  color: var(--accent);
+}
+
+.cred-card span {
+  color: var(--muted);
+  font-size: 0.72rem;
+  line-height: 1.4;
+}
+
+.action-button {
+  border: 1px solid var(--ring);
+  border-radius: 0;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  min-height: 52px;
+  text-transform: uppercase;
+}
+
+.action-button.primary {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.action-button.secondary {
+  background: var(--surface-strong);
+  color: var(--text);
+}
+
+.action-button.secondary:hover {
+  background: var(--text);
+  color: var(--page-bg);
+}
+
+:root[data-theme="creative"] .portfolio-home {
+  background:
+    linear-gradient(115deg, rgba(255, 122, 217, 0.1), transparent 35%),
+    linear-gradient(245deg, rgba(114, 242, 212, 0.1), transparent 38%);
+}
+
+:root[data-theme="creative"] .hero-copy {
+  background: var(--surface);
+}
+
+:root[data-theme="creative"] .hero-visual,
+:root[data-theme="creative"] .hero-copy {
+  backdrop-filter: blur(26px);
+}
+
+@media (max-width: 920px) {
+  .portfolio-home {
+    grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
+    gap: clamp(0.75rem, 2vw, 1.25rem);
+  }
+
+  .hero-visual,
+  .hero-copy {
+    width: 100%;
+  }
+
+  .hero-copy h2 {
+    max-width: 13ch;
+  }
+
+  .hero-support {
+    display: none;
+  }
+
+  #me.show {
+    height: min(34dvh, 340px);
+    width: min(42vw, 320px);
+  }
+}
+
+@media (max-width: 620px) {
+  .site-header {
+    align-items: center;
+    flex-direction: row;
+    height: clamp(64px, 10dvh, 78px);
+  }
+
+  .eyebrow {
+    display: none;
+  }
+
+  .theme-toggle {
+    min-width: auto;
+    padding-inline: 0.85rem;
+  }
+
+  .portfolio-home {
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(0, 0.48fr) minmax(0, 0.52fr);
+    height: calc(100dvh - clamp(64px, 10dvh, 78px) - env(safe-area-inset-bottom));
+    padding: 0.75rem;
+  }
+
+  .hero-copy {
+    border-top: 1px solid var(--ring);
+    border-radius: var(--radius-lg);
+    padding: 0.85rem 0 0;
+  }
+
+  .hero-visual {
+    border-right: 0;
+    padding: 0.75rem 0;
+  }
+
+  .hero-copy h2 {
+    font-size: clamp(1.45rem, 8.5vw, 2.45rem);
+    max-width: 100%;
+  }
+
+  .kicker,
+  .hero-support {
+    display: none;
+  }
+
+  .hero-lede {
+    font-size: clamp(0.82rem, 3.5vw, 0.95rem);
+    line-height: 1.45;
+  }
+
+  .primary-actions {
+    flex-direction: row;
+  }
+
+  .cred-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.5rem;
+  }
+
+  .cred-card {
+    min-width: 0;
+    padding: 0.55rem;
+  }
+
+  .cred-card strong {
+    font-size: 0.9rem;
+  }
+
+  .cred-card span {
+    font-size: 0.66rem;
+  }
+
+  .action-button {
+    flex: 1;
+    padding-inline: 0.75rem;
+  }
+
+  #me.show {
+    height: min(24dvh, 210px);
+    width: min(64vw, 260px);
+  }
+
+  .contact-strip {
+    margin-top: 0.65rem;
+  }
+}
+
+@media (max-height: 700px) {
+  .hero-support {
+    display: none;
+  }
+
+  .hero-copy h2 {
+    font-size: clamp(1.6rem, min(4.5vw, 7dvh), 3.25rem);
+  }
+
+  #me.show {
+    height: min(34dvh, 330px);
+  }
+}
+
+@media (max-height: 560px) {
+  .cred-grid {
+    display: none;
+  }
+
+  .hero-lede {
+    font-size: 0.88rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .type-writer {
+    border-right: 0;
+  }
 }
 
 #me {
@@ -279,9 +737,6 @@ button:hover {
 #me.show {
   transform: scale(1);
   opacity: 1;
-  border-radius: 3em;
-  width: 300px;
-  height: 200px;
 }
 
 .entryDiv {
@@ -372,7 +827,7 @@ a {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #fff;
+  background-color: var(--surface);
   --hole-size: 1px;
   --hole-x: 50%;
   --hole-y: 50%;

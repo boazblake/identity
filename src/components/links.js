@@ -1,16 +1,16 @@
 import m from "mithril";
-import { Animate, popIn } from "@/styles";
-import { randomPause } from "@/Utils";
 
 const links = [
   {
     href: "https://github.com/boazblake",
     src: "images/github.svg",
+    label: "GitHub profile",
     target: "_blank",
   },
   {
     href: "https://www.linkedin.com/in/boazblake/",
     src: "images/linkedin.svg",
+    label: "LinkedIn profile",
     target: "_blank",
   },
 ];
@@ -20,33 +20,30 @@ const Link = () => {
     hover: false,
   };
   return {
-    view: ({ attrs: { href, src, target } }) =>
+    view: ({ attrs: { href, src, label, target } }) =>
       m(
         target ? "a" : m.route.Link,
         {
-          class: "w3-cell",
-          // oncreate: Animate(popIn, randomPause),
+          class: "social-link",
           target: target ? "_blank" : "",
+          rel: target ? "noopener noreferrer" : "",
+          "aria-label": label,
           href,
         },
-        m(
-          "button.w3-white",
-          m("img", {
-            style: {
-              margin: "2px",
-              height: "50px",
-              width: "50px",
-              transition: "transform .1s ease-in",
-              ...(state.hover && { transform: "skewY(10deg)" }),
-            },
-            src,
-          }),
-        ),
+        m("img", {
+          src,
+          alt: "",
+          style: {
+            transform: state.hover ? "skewY(10deg)" : "",
+          },
+        }),
       ),
   };
 };
 
 export const Links = {
   view: () =>
-    links.map(({ href, src, target }) => m(Link, { href, src, target })),
+    links.map(({ href, src, label, target }) =>
+      m(Link, { href, src, label, target }),
+    ),
 };

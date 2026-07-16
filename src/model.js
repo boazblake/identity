@@ -11,7 +11,7 @@ const model = {
     loadingProgress: { max: 0, value: 0 },
     isLoggedIn: () => sessionStorage.getItem("token"),
   }, portfolio: { repos: {}, reposList: [] },
-  settings: { width: "", profile: "", inspector: "" },
+  settings: { width: "", profile: "", inspector: "", theme: "executive" },
 }
 
 export default model

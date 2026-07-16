@@ -4,27 +4,26 @@ import { Mask } from "@/components/mask";
 import { Resume } from "@/components/resume";
 import { Portfolio } from "@/components/portfolio";
 import { BottomSheet, State } from "@/components/bottom-sheet";
-import { Animate, fadeIn } from "@/styles";
 
 const getRightStyle = ({ settings: { profile } }) => {
   switch (profile) {
     case "desktop":
-      return { width: "100%", maxWidth:"60%", justifyContent: "center"};
+      return {};
     case "phone":
-      return { height: "200%", width: "100%", justifyContent: "center"};
+      return {};
     case "tablet":
-      return { height: "100%", justifyContent: "center", width: "49.99999%" };
+      return {};
   }
 };
 
 const getLeftStyle = ({ settings: { profile } }) => {
   switch (profile) {
     case "desktop":
-      return { width: "100%" };
+      return {};
     case "phone":
-      return { height: "200%", width: "100%" };
+      return {};
     case "tablet":
-      return { height: "100%", justifyContent: "center", width: "49.99999%" };
+      return {};
   }
 };
 
@@ -32,13 +31,13 @@ const portfolioState = State();
 const resumeState = State();
 
 const SheetBtn = {
-  view: ({ attrs: { action, title } }) =>
+  view: ({ attrs: { action, title, label, variant = "secondary" } }) =>
     m(
-      "button.w3-white",
+      `button.action-button.${variant}`,
       {
         onclick: action,
         type: "button",
-        id: "open-sheet",
+        "aria-label": label,
         "aria-controls": "sheet",
       },
       title,
@@ -68,75 +67,74 @@ const getClassList = (mdl) => {
 export const Home = {
   view: ({ attrs: { mdl } }) =>
     m(
-      `#home.${getClassList(mdl)}.w3-container`,
-      { style: { height: "90dvh" } },
+      `#home.${getClassList(mdl)}.portfolio-home`,
       m(
-        "section.w3-padding.column.justify-evenly.overflow",
+        "section.hero-visual",
         { style: getLeftStyle(mdl) },
-
-        m("img#me.w3-block.w3-content.show", {
-          src: "images/me.webp",
-        }),
+        m(".portrait-shell", [
+          m("img#me.show", {
+            src: "images/me.webp",
+            alt: "Boaz Blake",
+          }),
+        ]),
         m(Mask),
-        m(
-          rowWrapper,
-          { mdl },
+        m(".contact-strip", [
+          m(Links, { mdl }),
           m(
-            "a.w3-cell",
+            "a.contact-action",
             {
               href: "tel:+3474203251",
+              "aria-label": "Call Boaz Blake",
             },
-            m(SheetBtn, {
-              title: m("img", {
-                style: { width: "25px" },
-                src: "https://cdn-icons-png.flaticon.com/512/15/15874.png",
-              }),
+            m("img", {
+              alt: "",
+              src: "https://cdn-icons-png.flaticon.com/512/15/15874.png",
             }),
           ),
           m(
-            "a.w3 - cell",
+            "a.contact-action",
             {
               href: "mailto:boazblake@protonMail.com",
+              "aria-label": "Email Boaz Blake",
             },
-            m(SheetBtn, {
-              title: m("img", {
-                style: { width: "25px" },
-                src: "https://cdn-icons-png.flaticon.com/512/542/542638.png",
-              }),
+            m("img", {
+              alt: "",
+              src: "https://cdn-icons-png.flaticon.com/512/542/542638.png",
             }),
           ),
-        ),
+        ]),
       ),
       m(
-        "section.column.justify-evenly.w3-padding.overflow",
+        "section.hero-copy",
         { style: getRightStyle(mdl) },
+        m("p.kicker", "Frontend architecture · design systems · product UI"),
+        m("h2", "I turn complex product workflows into clear, durable interfaces."),
         m(
-          "p.w3-center",
-          `Results-driven Senior Software Engineer with over 8 years of experience in frontend development, specializing in ReactJS and modern JavaScript frameworks. Proven expertise in architecting scalable web applications, optimizing UI performance, and leading design system implementations.`,
+          "p.hero-lede",
+          `Senior frontend engineer with 8+ years building React, Vue, Mithril, NativeScript, and API-driven product surfaces for teams that need speed without losing craft.`,
         ),
         m(
-          "p.w3-center",
-          `Adept at collaborating with cross-functional teams, mentoring junior developers, and integrating RESTful APIs and GraphQL. Passionate about delivering high-fidelity, user-centric solutions with a focus on innovation and excellence.`,
+          "p.hero-support",
+          `I specialize in legacy modernization, reusable component systems, performance-minded UI, and pragmatic collaboration across design, product, and backend teams.`,
         ),
-        m(
-          rowWrapper,
-          { mdl },
-          m(
-            ".w3-cell",
-            m(SheetBtn, {
-              title: "Resume",
-              action: () => (resumeState.hideSheet = false),
-            }),
-          ),
-          m(
-            ".w3-cell",
-            m(SheetBtn, {
-              title: "Portfolio",
-              action: () => (portfolioState.hideSheet = false),
-            }),
-          ),
-        ),
-        m(rowWrapper, { mdl }, m(Links, { mdl })),
+        m(".cred-grid", [
+          m(".cred-card", [m("strong", "8+ yrs"), m("span", "Production frontend delivery")]),
+          m(".cred-card", [m("strong", "Modernized"), m("span", "Legacy .NET workflows into modern UI")]),
+          m(".cred-card", [m("strong", "Systems"), m("span", "Reusable components, APIs, performance")]),
+        ]),
+        m(".primary-actions", [
+          m(SheetBtn, {
+            title: "View Resume",
+            label: "Open resume",
+            variant: "primary",
+            action: () => (resumeState.hideSheet = false),
+          }),
+          m(SheetBtn, {
+            title: "See Work",
+            label: "Open portfolio",
+            action: () => (portfolioState.hideSheet = false),
+          }),
+        ]),
 
         m(BottomSheet, {
           state: resumeState,
