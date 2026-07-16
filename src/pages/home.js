@@ -11,7 +11,7 @@ const getRightStyle = ({ settings: { profile } }) => {
     case "desktop":
       return { width: "100%" };
     case "phone":
-      return { height: "200%", width: "100%" };
+      return { height: "200%", width: "100%", maxWidth:"60%"};
     case "tablet":
       return { height: "100%", justifyContent: "center", width: "49.99999%" };
   }
