@@ -1,9 +1,5 @@
 import m from "mithril";
 
-const CACHE_TTL = 60 * 60 * 1000;
-const REPOS_KEY = "repos";
-const REPOS_DATE_KEY = "repos-date";
-
 const staticProjects = [
   {
     name: "bonhamacres.org",
@@ -14,25 +10,6 @@ const staticProjects = [
     meta: "Civic web · Mithril · Express",
   },
 ];
-
-const readCachedRepos = () => {
-  const cachedAt = Number(localStorage.getItem(REPOS_DATE_KEY));
-  const cachedRepos = localStorage.getItem(REPOS_KEY);
-
-  if (!cachedAt || !cachedRepos || Date.now() - cachedAt > CACHE_TTL) {
-    localStorage.removeItem(REPOS_KEY);
-    localStorage.removeItem(REPOS_DATE_KEY);
-    return null;
-  }
-
-  return JSON.parse(cachedRepos);
-};
-
-const saveRepos = (repos) => {
-  localStorage.setItem(REPOS_DATE_KEY, `${Date.now()}`);
-  localStorage.setItem(REPOS_KEY, JSON.stringify(repos));
-  return repos;
-};
 
 const parseRepoDescription = (description = "") => {
   const [summary, image, meta] = (description || "")
@@ -55,21 +32,16 @@ const toProject = (repo) => {
 
 const isPortfolioRepo = (repo) => {
   const { image } = parseRepoDescription(repo.description);
-  return repo.homepage && repo.homepage.includes("boazblake") && image;
+  return (repo.homepage && repo.homepage.includes("boazblake")) || image;
 };
 
 const getRepos = () => {
-  const cachedRepos = readCachedRepos();
-  if (cachedRepos) return Promise.resolve(cachedRepos);
-
-  return m
-    .request({
-      url: "https://api.github.com/users/boazblake/repos?sort=updated&per_page=100",
-      headers: {
-        Accept: "application/vnd.github.v3+json",
-      },
-    })
-    .then(saveRepos);
+  return m.request({
+    url: "https://api.github.com/users/boazblake/repos?sort=updated&per_page=100",
+    headers: {
+      Accept: "application/vnd.github.v3+json",
+    },
+  });
 };
 
 const ProjectCard = {
