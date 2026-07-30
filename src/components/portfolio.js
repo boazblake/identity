@@ -1,27 +1,11 @@
 import m from "mithril";
-
+const SELECTED_REPOS = ['Inner-sanctum','lift-mate','golf-pro','present-v3','photo-scramble','sette-bambini','show-time', 'hacker-news-ionic']
 const CACHE_TTL = 60 * 60 * 1000;
 const REPOS_KEY = "repos";
 const REPOS_DATE_KEY = "repos-date";
 
-const readCachedRepos = () => {
-  const cachedAt = Number(localStorage.getItem(REPOS_DATE_KEY));
-  const cachedRepos = localStorage.getItem(REPOS_KEY);
 
-  if (!cachedAt || !cachedRepos || Date.now() - cachedAt > CACHE_TTL) {
-    localStorage.removeItem(REPOS_KEY);
-    localStorage.removeItem(REPOS_DATE_KEY);
-    return null;
-  }
 
-  return JSON.parse(cachedRepos);
-};
-
-const saveRepos = (repos) => {
-  localStorage.setItem(REPOS_DATE_KEY, `${Date.now()}`);
-  localStorage.setItem(REPOS_KEY, JSON.stringify(repos));
-  return repos;
-};
 
 const parseRepoDescription = (description = "") => {
   const [summary, image, meta] = (description || "")
@@ -43,13 +27,15 @@ const toProject = (repo) => {
 };
 
 const isPortfolioRepo = (repo) => {
-  const { image } = parseRepoDescription(repo.description);
-  return image;
+  
+  //just using these:
+  return SELECTED_REPOS.includes(repo.name)
+  //
+  // const { image } = parseRepoDescription(repo.description);
+  // return image;
 };
 
 const getRepos = () => {
-  const cachedRepos = readCachedRepos();
-  if (cachedRepos) return Promise.resolve(cachedRepos);
 
   return m
     .request({
@@ -58,7 +44,6 @@ const getRepos = () => {
         Accept: "application/vnd.github.v3+json",
       },
     })
-    .then(saveRepos);
 };
 
 const ProjectCard = {
@@ -93,11 +78,10 @@ const Portfolio = () => {
   };
 
   return {
-    oninit: () =>
-      getRepos().then(
+    oninit: async () =>
+      await getRepos().then(
         (repos) => {
           state.projects = [
-            ...staticProjects,
             ...repos.filter(isPortfolioRepo).map(toProject),
           ];
           state.status = "loaded";
