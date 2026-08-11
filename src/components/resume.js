@@ -16,7 +16,7 @@ const triggerDownload = () => (e) => {
 const resumeDto = [
   {
     heading:
-      "Software Engineer | AI-Assisted Engineering | TypeScript, Node.js, Web & Mobile",
+      "Senior Software Engineer | Frontend-Focused Full Stack | TypeScript, Vue, Node.js",
     data: [
       {
         info: [
@@ -40,29 +40,19 @@ const resumeDto = [
     heading: "Core Skills",
     data: [
       {
+        title: "Frontend",
+        info: [
+          "TypeScript, JavaScript, Vue.js, NativeScript-Vue, AureliaJS, HTML, CSS",
+        ],
+      },
+      {
+        title: "Full Stack",
+        info: [
+          "Node.js, REST, GraphQL, WebSockets, SQL, C#/.NET integration, Entity Framework request handlers, API design and integration",
+        ],
+      },
+      {
         title: "Engineering",
-        info: [
-          "TypeScript, JavaScript, Node.js, Vue.js, NativeScript-Vue, AureliaJS, HTML, CSS, REST, GraphQL, WebSockets",
-        ],
-      },
-    ],
-  },
-  {
-    heading: "Data & Backend",
-    data: [
-      {
-        title: "",
-        info: [
-          "SQL, C#/.NET integration, Entity Framework request handlers, API design and integration",
-        ],
-      },
-    ],
-  },
-  {
-    heading: "Quality & Delivery",
-    data: [
-      {
-        title: "",
         info: [
           "Automated testing, CI/CD, GitHub Actions, Jenkins, code review, requirements validation, production debugging, technical documentation",
         ],
@@ -80,7 +70,7 @@ const resumeDto = [
       {
         title: "Senior Front End Web System Developer",
         location: "Empyrean Benefit Solutions | Houston, TX",
-        date: "Apr 2019 – Present",
+        date: "Apr 2019 - Present",
         info: [
           "Delivered a cross-platform AI conversational assistant in under four months using Vue and NativeScript-Vue, owning frontend architecture and partnering with a backend engineer on AI-agent orchestration, live-agent handoffs, internal API integration, WebSocket streaming, reconnection, and session recovery.",
           "Diagnose production failures across browsers, physical mobile devices, APIs, and real-time connections using structured logs, reproducible test cases, and system-boundary analysis.",
@@ -92,7 +82,7 @@ const resumeDto = [
       {
         title: "Front End Web Developer",
         location: "Empyrean Benefit Solutions | Houston, TX",
-        date: "Aug 2016 – Apr 2019",
+        date: "Aug 2016 - Apr 2019",
         info: [
           "Worked directly with business users and analysts to understand legacy client-configuration workflows before rebuilding them, preventing known usability problems from carrying into the modern application.",
           "Redesigned a multi-page legacy .NET workflow as an Aurelia data table with expandable rows, reducing the typical path to record details from about four navigation clicks to one.",
@@ -105,17 +95,27 @@ const resumeDto = [
     heading: "Selected Projects",
     data: [
       {
-        title: "",
+        title: "Sanctum",
         info: [
-          "Inner-Sanctum (Sanctum): private React Native voice journal using on-device Whisper transcription and local LLM reflection, with no backend, analytics, or network dependency.",
-          "Lift-Mate: Ionic and Mithril fitness application with real-time MediaPipe pose, hand, and face landmark detection across web and native mobile.",
-          "Golf-Pro: pose-AI data project that collects professional golf swing video, normalizes body coordinates, and prepares training data for real-time swing feedback.",
+          "Private React Native voice journal using on-device Whisper transcription and local LLM reflection, with no backend, analytics, or network dependency.",
+        ],
+      },
+      {
+        title: "Lift-Mate",
+        info: [
+          "Ionic and Mithril fitness application with real-time MediaPipe pose, hand, and face landmark detection across web and native mobile.",
+        ],
+      },
+      {
+        title: "Golf-Pro",
+        info: [
+          "Pose-AI data project that collects professional golf swing video, normalizes body coordinates, and prepares training data for real-time swing feedback.",
         ],
       },
     ],
   },
   {
-    heading: "Education & Technical Training",
+    heading: "Education & Research",
     data: [
       {
         title: "The Iron Yard",
@@ -165,7 +165,7 @@ const Resume = {
         m(
           ".",
           m(
-            "h3.sticky.resume-title.w3-white.bg-white",
+            "h3.sticky.resume-title",
             {
               style: {
                 whiteSpace: "nowrap",

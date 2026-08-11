@@ -188,7 +188,14 @@ a {
 }
 
 .resume-title {
+  background-color: var(--surface-strong);
+  background-color: color-mix(in srgb, var(--surface-strong) 88%, transparent);
+  border-bottom: 2px solid var(--accent);
+  border-top: 1px solid color-mix(in srgb, var(--ring) 28%, transparent);
+  color: var(--text);
   line-height: 75px;
+  padding-inline: 0.75rem;
+  backdrop-filter: blur(14px);
 }
 
 #app {
