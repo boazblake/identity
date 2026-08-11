@@ -6,8 +6,8 @@ const link = ({ href, title }) =>
 const triggerDownload = () => (e) => {
   e.preventDefault();
   const link = document.createElement("a");
-  link.href = "files/BOAZ_RESUME.pdf";
-  link.setAttribute("download", "BOAZ_BLAKE_FRONTEND_DEVELOPER_RESUME.pdf");
+  link.href = "files/Boaz_Blake_Resume.pdf";
+  link.setAttribute("download", "Boaz_Blake_Resume.pdf");
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
@@ -15,38 +15,56 @@ const triggerDownload = () => (e) => {
 
 const resumeDto = [
   {
-    heading: "Professional Summary",
+    heading:
+      "Software Engineer | AI-Assisted Engineering | TypeScript, Node.js, Web & Mobile",
     data: [
       {
         info: [
-          `Frontend software engineer with 9+ years of professional experience building enterprise web and cross-platform mobile applications. Strong in TypeScript, Vue, NativeScript-Vue, AureliaJS, Tailwind CSS, Vite, responsive UI, data visualization, PWA and offline behavior, WCAG accessibility, automated testing, and WebSocket-driven real-time interfaces. Delivers reusable component systems, production performance improvements, and end-to-end features spanning Node.js services, REST APIs, C#/.NET integration, and SQL.`,
+          "Houston, TX | (347) 420-3251 | boazblake@protonmail.com | github.com/boazblake | boazblake.github.io/identity",
         ],
       },
     ],
   },
   {
-    heading: "Technical Skills",
+    heading: "Professional Summary",
     data: [
       {
-        title: "Core",
-        info: ["TypeScript, JavaScript (ES6+), HTML5, CSS3, Node.js, C#, SQL"],
-      },
-      {
-        title: "Frontend",
         info: [
-          "Vue.js, NativeScript-Vue, AureliaJS, Tailwind CSS, Sass, LESS, responsive/mobile-first UI, reusable component systems, Figma",
+          "Software engineer with nearly 10 years of experience building, testing, debugging, and supporting enterprise web and mobile systems.",
+          "Strong in TypeScript, JavaScript, Node.js, Vue, APIs, real-time systems, automated testing, production troubleshooting, and evaluating software behavior across system boundaries.",
         ],
       },
+    ],
+  },
+  {
+    heading: "Core Skills",
+    data: [
       {
-        title: "Real-Time & Data",
+        title: "Engineering",
         info: [
-          "WebSockets, streaming UI, event-driven state, charting and data-visualization libraries, REST, GraphQL, PWA, service workers, offline support",
+          "TypeScript, JavaScript, Node.js, Vue.js, NativeScript-Vue, AureliaJS, HTML, CSS, REST, GraphQL, WebSockets",
         ],
       },
+    ],
+  },
+  {
+    heading: "Data & Backend",
+    data: [
       {
-        title: "Quality & Delivery",
+        title: "",
         info: [
-          "Vite, Webpack, ESBuild, Babel, automated unit/integration/end-to-end testing, WCAG accessibility, cross-browser compatibility, GitHub Actions, Jenkins, Git",
+          "SQL, C#/.NET integration, Entity Framework request handlers, API design and integration",
+        ],
+      },
+    ],
+  },
+  {
+    heading: "Quality & Delivery",
+    data: [
+      {
+        title: "",
+        info: [
+          "Automated testing, CI/CD, GitHub Actions, Jenkins, code review, requirements validation, production debugging, technical documentation",
         ],
       },
     ],
@@ -55,51 +73,69 @@ const resumeDto = [
     heading: "Professional Experience",
     data: [
       {
-        title: "Senior Front-End Web Systems Developer",
+        title: "Empyrean Benefit Solutions | Houston, TX",
+        date: "2016 - Present",
+        info: [],
+      },
+      {
+        title: "Senior Front End Web System Developer",
         location: "Empyrean Benefit Solutions | Houston, TX",
         date: "Apr 2019 – Present",
         info: [
-          "Lead frontend development of enterprise web and mobile products used by business analysts, technical directors, and client-facing teams, converting complex operational workflows into responsive, maintainable interfaces.",
-          "Architect and maintain reusable TypeScript and Vue component systems using Tailwind CSS, Sass, and Figma specifications, with WCAG-aligned accessibility, mobile-first behavior, and cross-browser consistency.",
-          "Build data-rich interfaces and visualizations with charting libraries, improving readability and rendering performance for time-sensitive user workflows.",
-          "Architected a TypeScript conversational assistant for Vue web and NativeScript mobile clients, using WebSockets for streamed text and audio, reconnection, session resume, and synchronized client-server state.",
-          "Implemented PWA and offline-capable behavior with service workers, caching, resilient network-state handling, and mobile-focused interaction patterns.",
-          "Develop TypeScript and Node.js services, integrate REST and GraphQL APIs, and contribute to C#/.NET Entity Framework handlers and SQL-backed workflows.",
-          "Delivered an end-to-end delayed-configuration capability ahead of schedule by owning SQL table design, API development, and a complex frontend workflow.",
-          "Reduced operational processing time by 20% through UX redesign; strengthened releases with automated frontend tests, Vite/Webpack tooling, GitHub Actions, Jenkins, code reviews, and mentoring.",
+          "Delivered a cross-platform AI conversational assistant in under four months using Vue and NativeScript-Vue, owning frontend architecture and partnering with a backend engineer on AI-agent orchestration, live-agent handoffs, internal API integration, WebSocket streaming, reconnection, and session recovery.",
+          "Diagnose production failures across browsers, physical mobile devices, APIs, and real-time connections using structured logs, reproducible test cases, and system-boundary analysis.",
+          "Develop TypeScript and Node.js services, integrate REST and GraphQL APIs, and contribute to C#/.NET Entity Framework request handlers and SQL-backed business workflows.",
+          "Review code, mentor developers, document decisions, and work with product, design, business, and backend teams to validate requirements, assess tradeoffs, and deliver production software.",
+          "Delivered a delayed-configuration capability ahead of schedule by owning SQL table design, API development, validation, and a complex frontend workflow.",
         ],
       },
       {
-        title: "Front-End Web Developer",
+        title: "Front End Web Developer",
         location: "Empyrean Benefit Solutions | Houston, TX",
         date: "Aug 2016 – Apr 2019",
         info: [
-          "Developed responsive applications with Vue, AureliaJS, and NativeScript, including EmpyreanGO, the company’s first cross-platform mobile application.",
-          "Built an employee onboarding application connecting HR and customer-service workflows, integrated backend APIs, and created maintainable Sass-based styling patterns.",
+          "Worked directly with business users and analysts to understand legacy client-configuration workflows before rebuilding them, preventing known usability problems from carrying into the modern application.",
+          "Redesigned a multi-page legacy .NET workflow as an Aurelia data table with expandable rows, reducing the typical path to record details from about four navigation clicks to one.",
+          "Implemented supporting SQL schema changes, C#/.NET and Entity Framework request handlers, REST APIs, validation, and Aurelia frontend features; also delivered Vue and NativeScript applications including EmpyreanGO.",
         ],
       },
     ],
   },
   {
-    heading: "Education",
+    heading: "Selected Projects",
     data: [
       {
-        title: "Front End Web Development",
-        location: "The Iron Yard | Houston, TX",
+        title: "",
+        info: [
+          "Inner-Sanctum (Sanctum): private React Native voice journal using on-device Whisper transcription and local LLM reflection, with no backend, analytics, or network dependency.",
+          "Lift-Mate: Ionic and Mithril fitness application with real-time MediaPipe pose, hand, and face landmark detection across web and native mobile.",
+          "Golf-Pro: pose-AI data project that collects professional golf swing video, normalizes body coordinates, and prepares training data for real-time swing feedback.",
+        ],
+      },
+    ],
+  },
+  {
+    heading: "Education & Technical Training",
+    data: [
+      {
+        title: "The Iron Yard",
+        location: "Houston, TX",
         date: "2016",
         info: ["Front-End Web Development"],
       },
       {
-        title: "Doctoral Studies",
-        location: "University of Houston | Houston, TX",
-        date: "2011 – 2014",
-        info: ["Statistics instruction and NASA-funded research."],
+        title: "University of Houston",
+        location: "Houston, TX",
+        date: "2011 - 2014",
+        info: [
+          "Doctoral Studies - Human space exploration research supported by NASA HRP Grant #NNX12AF04G; graduate teaching assistant for statistics and biomechanics.",
+        ],
       },
       {
-        title: "B.S. Sports Medicine | cum laude",
-        location: "James Madison University | Harrisonburg, VA",
+        title: "James Madison University",
+        location: "Harrisonburg, VA",
         date: "2010",
-        info: ["Bachelor of Science in Sports Medicine, cum laude."],
+        info: ["B.S. Sports Medicine, cum laude"],
       },
     ],
   },
@@ -118,8 +154,8 @@ const Resume = {
           tabIndex: "1",
           target: "_blank",
           rel: "noopener noreferrer",
-          href: "/files/The_Resume_Of_Boaz_Blake.pdf",
-          download: "The_Resume_Of_Boaz_Blake.pdf",
+          href: "files/Boaz_Blake_Resume.pdf",
+          download: "Boaz_Blake_Resume.pdf",
           style: { zIndex: 1000 },
         },
         "Download Resume",
