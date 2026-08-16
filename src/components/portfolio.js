@@ -1,11 +1,18 @@
 import m from "mithril";
-const SELECTED_REPOS = ['Inner-sanctum','lift-mate','golf-pro','present-v3','photo-scramble','sette-bambini','show-time', 'hacker-news-ionic']
+const SELECTED_REPOS = [
+  "kb-knowledge",
+  "Inner-sanctum",
+  "lift-mate",
+  "golf-pro",
+  "present-v3",
+  "photo-scramble",
+  "sette-bambini",
+  "show-time",
+  "hacker-news-ionic",
+];
 const CACHE_TTL = 60 * 60 * 1000;
 const REPOS_KEY = "repos";
 const REPOS_DATE_KEY = "repos-date";
-
-
-
 
 const parseRepoDescription = (description = "") => {
   const [summary, image, meta] = (description || "")
@@ -27,23 +34,20 @@ const toProject = (repo) => {
 };
 
 const isPortfolioRepo = (repo) => {
-  
   //just using these:
-  return SELECTED_REPOS.includes(repo.name)
+  return SELECTED_REPOS.includes(repo.name);
   //
   // const { image } = parseRepoDescription(repo.description);
   // return image;
 };
 
 const getRepos = () => {
-
-  return m
-    .request({
-      url: "https://api.github.com/users/boazblake/repos?sort=updated&per_page=100",
-      headers: {
-        Accept: "application/vnd.github.v3+json",
-      },
-    })
+  return m.request({
+    url: "https://api.github.com/users/boazblake/repos?sort=updated&per_page=100",
+    headers: {
+      Accept: "application/vnd.github.v3+json",
+    },
+  });
 };
 
 const ProjectCard = {
@@ -81,9 +85,7 @@ const Portfolio = () => {
     oninit: async () =>
       await getRepos().then(
         (repos) => {
-          state.projects = [
-            ...repos.filter(isPortfolioRepo).map(toProject),
-          ];
+          state.projects = [...repos.filter(isPortfolioRepo).map(toProject)];
           state.status = "loaded";
         },
         (errors) => {
@@ -116,4 +118,3 @@ const Portfolio = () => {
 };
 
 export { Portfolio };
-
