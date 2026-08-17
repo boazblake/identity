@@ -1,8 +1,5 @@
 import m from "mithril";
 
-const link = ({ href, title }) =>
-  `<a class="w3-border-bottom" target="_blank" href=${href}>${title}</a> `;
-
 const triggerDownload = () => (e) => {
   e.preventDefault();
   const link = document.createElement("a");
@@ -141,13 +138,11 @@ const resumeDto = [
   },
 ];
 const Resume = {
-  view: ({ attrs: { state } }) => {
+  view: () => {
     return m(
       "#resume",
-      { style: { height: state.height } },
-
       m(
-        "a.button.w3-right.sticky",
+        "a.button.resume-download",
         {
           ontouchstart: triggerDownload(),
           onclick: triggerDownload(),
@@ -165,7 +160,7 @@ const Resume = {
         m(
           ".",
           m(
-            "h3.sticky.resume-title",
+            "h3.resume-title",
             {
               style: {
                 whiteSpace: "nowrap",
@@ -175,12 +170,12 @@ const Resume = {
           ),
           dto.data.map((data) =>
             m(
-              "table.w3-table",
+              "table.resume-table",
               m(
                 "tr",
-                m("td.italic.w3-left", data.title),
-                m("td.w3-center", data.location),
-                m("td.w3-right", data.date),
+                m("td.resume-role", data.title),
+                m("td.resume-location", data.location),
+                m("td.resume-date", data.date),
               ),
               m(
                 "tr",

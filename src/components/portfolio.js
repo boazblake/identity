@@ -10,10 +10,6 @@ const SELECTED_REPOS = [
   "show-time",
   "hacker-news-ionic",
 ];
-const CACHE_TTL = 60 * 60 * 1000;
-const REPOS_KEY = "repos";
-const REPOS_DATE_KEY = "repos-date";
-
 const parseRepoDescription = (description = "") => {
   const [summary, image, meta] = (description || "")
     .split("~")

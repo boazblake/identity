@@ -1,102 +1,71 @@
-import m from 'mithril'
-import '../styles/bottom-sheet.css'
+import m from "mithril";
+import "../styles/bottom-sheet.css";
 
-const getHeight = (state) => {
-  const sheetHeight = Math.max(14, Math.min(100, state.sheetHeight))
-  if (sheetHeight < 15) {
-    state.hideSheet = true
-    resetState(state)
-  }
+const isFullScreen = (state) => {
+  const threshold = window.innerWidth < 668 ? 75 : 90;
+  return state.sheetHeight >= threshold;
+};
+const touchPosition = (event) => event.touches ? event.touches[0] : event;
+const resetHeight = () => Math.min(50, 720 / window.innerHeight * 100);
+const close = (state) => {
+  state.activePanel = null;
+  state.sheetHeight = resetHeight();
+};
+const onDragStart = (state, drag) => (event) => {
+  event.preventDefault();
+  drag.position = touchPosition(event).pageY;
+  state.sheetHeight = Math.max(14, Math.min(100, state.sheetHeight));
+};
+const onDragMove = (state, drag) => (event) => {
+  if (drag.position === undefined) return;
+  const y = touchPosition(event).pageY;
+  state.sheetHeight = Math.max(0, Math.min(100, state.sheetHeight + (drag.position - y) / window.innerHeight * 100));
+  drag.position = y;
+};
+const onDragEnd = (state, drag) => (event) => {
+  if (drag.position === undefined) return;
+  event.preventDefault();
+  drag.position = undefined;
+  if (state.sheetHeight < 15) close(state);
+};
 
-  return `${sheetHeight}dvh`
-}
-
-const getProfile = (w) => {
-  if (w < 668) return "phone"
-  if (w < 920) return "tablet"
-  return "desktop"
-}
-
-const isFullScreen = state => {
-  const profile = getProfile(window.innerWidth)
-  switch (profile) {
-    case 'phone': return state.sheetHeight >= 75 ? 'fullscreen' : 'not-fullscreen'
-    case 'tablet': return state.sheetHeight >= 90 ? 'fullscreen' : 'not-fullscreen'
-    case 'desktop': return state.sheetHeight >= 90 ? 'fullscreen' : 'not-fullscreen'
-  }
-}
-
-const isSelectable = state => state.selectable ? 'selectable' : 'not-selectable'
-
-const touchPosition = (event) => event.touches ? event.touches[0] : event
-
-const getCursor = state => state.isDragging ? 'grabbing' : 'grabber'
-
-const onDragStart = state => (e) => {
-  e.preventDefault()
-  state.dragPosition = touchPosition(e).pageY
-  state.selectable = false
-  state.isDragging = true
-}
-
-const onDragMove = state => (e) => {
-
-  if (state.dragPosition === undefined) return
-  const y = touchPosition(e).pageY
-  const deltaY = state.dragPosition - y
-  const deltaHeight = deltaY / window.innerHeight * 100
-  state.sheetHeight = state.sheetHeight + deltaHeight
-  state.dragPosition = y
-}
-
-const onDragEnd = state => (e) => {
-  if (state.dragPosition === undefined) return
-  e.preventDefault()
-  state.dragPosition = undefined
-  state.selectable = true
-  state.isDragging = false
-}
-
-const resetState = (state) =>
-  state.sheetHeight = Math.min(50, 720 / window.innerHeight * 100)
-
-const State = () => ({
-  hideSheet: true,
-  sheetHeight: Math.min(50, 720 / window.innerHeight * 100),
-  dragPosition: undefined,
-  isDragging: false,
-  selectable: true,
-})
-
+const State = () => ({ activePanel: null, sheetHeight: resetHeight() });
+const drag = { position: undefined };
 
 const BottomSheet = {
-
-  view: ({ attrs: { state, render } }) =>
-    m('#bottomsheet.sheet',
-      {
-        onmousemove: onDragMove(state),
-        ontouchmove: onDragMove(state),
-        onmouseup: onDragEnd(state),
-        ontouchend: onDragEnd(state),
-        onmouseleave: onDragEnd(state),
-        "aria-hidden": `${state.hideSheet}`,
-        role: 'dialog',
-        style: { bottom: isFullScreen(state) ? 0 : '3dvh' },
+  view: ({ attrs: { state, render } }) => {
+    const dragging = drag.position !== undefined;
+    const fullscreen = isFullScreen(state);
+    return m("#bottomsheet.sheet", {
+      onmousemove: onDragMove(state, drag),
+      ontouchmove: onDragMove(state, drag),
+      onmouseup: onDragEnd(state, drag),
+      ontouchend: onDragEnd(state, drag),
+      onmouseleave: onDragEnd(state, drag),
+      "aria-hidden": `${!state.activePanel}`,
+      "aria-modal": "true",
+      role: "dialog",
+      style: { bottom: fullscreen ? 0 : "3dvh" },
+    },
+      m(".overlay"),
+      m(`#contents.${fullscreen ? "is-fullscreen" : "is-windowed"}.${dragging ? "is-dragging" : "is-selectable"}`, {
+        style: { height: `${Math.max(14, Math.min(100, state.sheetHeight))}dvh` },
       },
-      m('.overlay'),
-      m(`#contents.${isFullScreen(state)}.${isSelectable(state)}`,
-        { style: { height: getHeight(state) } },
-        m(`header.controls.${getCursor(state)}`, { ontouchstart: onDragStart(state), onmousedown: onDragStart(state) },
-          m('.draggable-area',
-            m('.draggable-thumb',)),
-          m('a.close-sheet', {
-            ontouchstart: () => { state.hideSheet = true; resetState(state); },
-            onclick: () => { state.hideSheet = true; resetState(state); }, 'type': 'button', 'title': 'Close the sheet'
-          },
-            m.trust('&times;')
-          )),
-        m('#sheet-contents.body', render(state)))),
-}
+        m(`header.controls.${dragging ? "grabbing" : "grabber"}`, {
+          ontouchstart: onDragStart(state, drag),
+          onmousedown: onDragStart(state, drag),
+        },
+          m(".draggable-area", m(".draggable-thumb")),
+          m("button.close-sheet", {
+            type: "button",
+            "aria-label": "Close sheet",
+            onclick: () => close(state),
+          }, m.trust("&times;")),
+        ),
+        m("#sheet-contents.body", render(state.activePanel)),
+      ),
+    );
+  },
+};
 
-
-export { BottomSheet, State }
+export { BottomSheet, State };

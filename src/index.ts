@@ -4,7 +4,6 @@ import model from "./model.js";
 import "./styles/index.css";
 
 const root = document.body;
-let winW = window.innerWidth;
 const getSavedTheme = () => {
   try {
     return localStorage.getItem("theme") || sessionStorage.getItem("theme");
@@ -18,26 +17,4 @@ const savedTheme = getSavedTheme();
 model.settings.theme = savedTheme === "creative" ? "creative" : "executive";
 document.documentElement.dataset.theme = model.settings.theme;
 
-// set display profiles
-const getProfile = (w: number) => {
-  if (w < 665) return "phone";
-  if (w < 920) return "tablet";
-  return "desktop";
-};
-
-const checkWidth = (winW: number) => {
-  const w = window.innerWidth;
-  if (winW !== w) {
-    winW = w;
-    var lastProfile = model.settings.profile;
-    model.settings.width = w;
-    model.settings.profile = getProfile(w);
-    if (lastProfile != model.settings.profile) m.redraw();
-  }
-  return requestAnimationFrame(checkWidth);
-};
-
-model.settings.profile = getProfile(winW);
-
-checkWidth(winW);
 m.route(root, "/", routes(model));

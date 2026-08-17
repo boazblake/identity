@@ -5,30 +5,7 @@ import { Resume } from "@/components/resume";
 import { Portfolio } from "@/components/portfolio";
 import { BottomSheet, State } from "@/components/bottom-sheet";
 
-const getRightStyle = ({ settings: { profile } }) => {
-  switch (profile) {
-    case "desktop":
-      return {};
-    case "phone":
-      return {};
-    case "tablet":
-      return {};
-  }
-};
-
-const getLeftStyle = ({ settings: { profile } }) => {
-  switch (profile) {
-    case "desktop":
-      return {};
-    case "phone":
-      return {};
-    case "tablet":
-      return {};
-  }
-};
-
-const portfolioState = State();
-const resumeState = State();
+const sheetState = State();
 
 const SheetBtn = {
   view: ({ attrs: { action, title, label, variant = "secondary" } }) =>
@@ -44,33 +21,12 @@ const SheetBtn = {
     ),
 };
 
-const wrapperClassList = (mdl) =>
-  ["desktop", "laptop"].includes(mdl.settings.profile)
-    ? ".w3-cell-row.w3-block.w3-center.w3-margin.w3-padding"
-    : ".w3-cell-row.w3-block.w3-center.w3-padding";
-
-const rowWrapper = {
-  view: ({ children, attrs: { mdl } }) => m(wrapperClassList(mdl), children),
-};
-
-const getClassList = (mdl) => {
-  switch (mdl.settings.profile) {
-    case "phone":
-      return "column.items-center.justify-evenly";
-    case "tablet":
-      return "row.items-center";
-    case "desktop":
-      return "column.items-center.justify-evenly";
-  }
-};
-
 export const Home = {
   view: ({ attrs: { mdl } }) =>
     m(
-      `#home.${getClassList(mdl)}.portfolio-home`,
+      "#home.portfolio-home",
       m(
         "section.hero-visual",
-        { style: getLeftStyle(mdl) },
         m(".portrait-shell", [
           m("img#me.show", {
             src: "images/me.webp",
@@ -106,7 +62,6 @@ export const Home = {
       ),
       m(
         "section.hero-copy",
-        { style: getRightStyle(mdl) },
         m("p.kicker", "Frontend architecture · design systems · product UI"),
         m("h2", "I turn complex product workflows into clear, durable interfaces."),
         m(
@@ -127,22 +82,18 @@ export const Home = {
             title: "View Resume",
             label: "Open resume",
             variant: "primary",
-            action: () => (resumeState.hideSheet = false),
+            action: () => (sheetState.activePanel = "resume"),
           }),
           m(SheetBtn, {
             title: "See Work",
             label: "Open portfolio",
-            action: () => (portfolioState.hideSheet = false),
+            action: () => (sheetState.activePanel = "portfolio"),
           }),
         ]),
       ),
       m(BottomSheet, {
-        state: resumeState,
-        render: (state) => m(Resume, { mdl, state }),
-      }),
-      m(BottomSheet, {
-        state: portfolioState,
-        render: () => m(Portfolio, { mdl }),
+        state: sheetState,
+        render: (panel) => panel === "resume" ? m(Resume) : m(Portfolio),
       }),
     ),
 };
